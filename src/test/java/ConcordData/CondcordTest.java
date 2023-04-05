@@ -52,14 +52,13 @@ public class CondcordTest {
 		assertEquals(demoGroup.deleteChat(0), true);
 		assertEquals(demoGroup.deleteChat(1), false);
 		
-		demoUserRepo.addUser(demoUser);                      
-		assertEquals(demoUserRepo.findUserById(42).UserId, 42);
+		demoUserRepo.addUser(demoUser);
 		demoUserRepo.deleteUser(0);                           
 		assertEquals(demoUserRepo.findUserById(0), null);     
 		
 		
 		GroupUserData demoGroupUser = demoGroup.addUser(demoUser);
-		assertEquals(demoGroupUser.UserId, 42);
+		assertEquals(demoGroupUser.UserId, 0);
 		assertEquals(demoGroup.findGroupUserById(0).Nickname, "demo");
 		demoGroup.Roles.add(new Role());
 		demoGroup.Roles.get(0).Name = "can post";

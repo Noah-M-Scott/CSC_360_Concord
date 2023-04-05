@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class GroupUserData {
 	public long UserId;
 	public String Nickname;
-	public ArrayList<Role> Roles = new ArrayList<Role>();;
+	public ArrayList<Role> Roles = new ArrayList<Role>();
 	
 
 
