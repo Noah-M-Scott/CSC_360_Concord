@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox prefHeight="289.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="18.0" prefWidth="600.0">
+               <children>
+                  <Label prefHeight="16.0" prefWidth="418.0" text="UserName" />
+                  <Label prefHeight="16.0" prefWidth="178.0" text="Timestamp" />
+               </children>
+            </HBox>
+            <Label prefHeight="51.0" prefWidth="600.0" text="MsgText" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

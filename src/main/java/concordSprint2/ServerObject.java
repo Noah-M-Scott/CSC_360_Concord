@@ -58,10 +58,10 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 	@Override
 	public UserData login(String Name, String Password, ClientInterface client) throws RemoteException {
 		UserData logClient = currentUserRepository.findUserByName(Name);
-		RMIClientList.put(logClient.UserId, client);
-		if (logClient.Password.equals(Password))
+		if (logClient.Password.equals(Password)) {
+			RMIClientList.put(logClient.UserId, client);
 			return logClient;
-		else
+		}else
 			return null;
 	}
 

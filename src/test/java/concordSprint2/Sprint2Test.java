@@ -37,7 +37,8 @@ class Sprint2Test {
 		c.addUser(demoUser);
 		assertEquals(c.CurrentUser.UserId, 0);
 		
-		c.login("demo", "demo");
+		assertEquals(c.login("demo", "notdemo"), "Failed to Login");
+		assertEquals(c.login("demo", "demo"), "ok");
 		
 		GroupData demoGroup = new GroupData();
 		demoGroup.addUser(demoUser);
@@ -85,6 +86,7 @@ class Sprint2Test {
 		assertEquals(c.giveTakeRole(c.CurrentUser.UserId, c.CurrentGroup.GroupId, demoUser2.UserId, "demorole", true), "ok");
 		
 		s.saveToDisk("test.xml");
+		//s.loadFromDisk("test.xml");
 		
 		assertEquals(c.deleteRole(c.CurrentUser.UserId, c.CurrentGroup.GroupId, "demorole"), "ok");
 		

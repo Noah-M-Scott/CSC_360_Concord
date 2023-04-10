@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <right>
+      <ScrollBar orientation="VERTICAL" BorderPane.alignment="CENTER" />
+   </right>
+   <left>
+      <HBox prefHeight="376.0" prefWidth="185.0" BorderPane.alignment="CENTER">
+         <children>
+            <ScrollBar orientation="VERTICAL" prefHeight="400.0" prefWidth="1.0" />
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ChoiceBox prefWidth="150.0" />
+                  <ListView prefHeight="400.0" prefWidth="94.0" />
+               </children>
+            </VBox>
+            <ScrollBar orientation="VERTICAL" prefHeight="400.0" prefWidth="18.0" />
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ChoiceBox prefWidth="150.0" />
+                  <ListView prefHeight="400.0" prefWidth="188.0" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </left>
+   <center>
+      <VBox prefHeight="400.0" prefWidth="457.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="58.0" prefWidth="270.0" text="  Server name: Channel name" />
+            <ListView prefHeight="383.0" prefWidth="400.0" />
+            <HBox prefHeight="64.0" prefWidth="400.0">
+               <children>
+                  <Button mnemonicParsing="false" text="+" />
+                  <TextField prefHeight="24.0" prefWidth="316.0" />
+                  <Button mnemonicParsing="false" text="Send" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
