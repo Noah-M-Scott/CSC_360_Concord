@@ -2,39 +2,28 @@
 <java version="17.0.5" class="java.beans.XMLDecoder">
  <object class="ConcordData.GroupDataRepo" id="GroupDataRepo0"/>
  <object class="ConcordData.UserDataRepo" id="UserDataRepo0"/>
-<void class="ConcordData.UserData" method="getField">
- <string>UserId</string>
- <void method="set">
-  <object class="ConcordData.UserData" id="UserData0">
-   <void class="ConcordData.UserData" method="getField">
-    <string>DisplayName</string>
-    <void method="set">
-     <object idref="UserData0"/>
-     <string>demo2</string>
-    </void>
-   </void>
-   <void class="ConcordData.UserData" method="getField">
-    <string>Password</string>
-    <void method="set">
-     <object idref="UserData0"/>
-     <string>demo2</string>
-    </void>
-   </void>
-  </object>
-  <long>1</long>
+<void class="ConcordData.GroupDataRepo" id="Field0" method="getField">
+ <string>Groups</string>
+ <void id="HashMap0" method="get">
+  <object idref="GroupDataRepo0"/>
+  <void method="put">
+   <long>0</long>
+   <object class="ConcordData.GroupData" id="GroupData0"/>
+  </void>
  </void>
 </void>
+<void idref="HashMap0"/>
 <void class="ConcordData.Role" method="getField">
  <string>Name</string>
  <void method="set">
   <object class="ConcordData.Role" id="Role0"/>
-  <string>demorole</string>
+  <string>admin</string>
  </void>
 </void>
-<void class="ConcordData.GroupData" id="Field0" method="getField">
+<void class="ConcordData.GroupData" id="Field1" method="getField">
  <string>Users</string>
  <void id="ArrayList0" method="get">
-  <object class="ConcordData.GroupData" id="GroupData0"/>
+  <object idref="GroupData0"/>
   <void method="add">
    <object class="ConcordData.GroupUserData" id="GroupUserData0">
     <void class="ConcordData.GroupUserData" method="getField">
@@ -67,39 +56,18 @@
  </void>
 </void>
 <void idref="ArrayList0"/>
-<void class="ConcordData.ChatListing" method="getField">
- <string>ChatName</string>
- <void method="set">
-  <object class="ConcordData.ChatListing" id="ChatListing0"/>
-  <string>demoListing</string>
- </void>
-</void>
-<void class="ConcordData.UserData" method="getField">
- <string>DisplayName</string>
- <void method="set">
-  <object class="ConcordData.UserData" id="UserData1">
-   <void class="ConcordData.UserData" method="getField">
-    <string>Password</string>
+<void class="ConcordData.ChatListing" id="Field2" method="getField">
+ <string>Chat</string>
+ <void id="ArrayList1" method="get">
+  <object class="ConcordData.ChatListing" id="ChatListing0">
+   <void class="ConcordData.ChatListing" method="getField">
+    <string>ChatName</string>
     <void method="set">
-     <object idref="UserData1"/>
-     <string>demo</string>
+     <object idref="ChatListing0"/>
+     <string>demoListing</string>
     </void>
    </void>
   </object>
-  <string>demo</string>
- </void>
-</void>
-<void class="ConcordData.Role" method="getField">
- <string>Name</string>
- <void method="set">
-  <object class="ConcordData.Role" id="Role1"/>
-  <string>admin</string>
- </void>
-</void>
-<void class="ConcordData.ChatListing" id="Field1" method="getField">
- <string>Chat</string>
- <void id="ArrayList1" method="get">
-  <object idref="ChatListing0"/>
   <void method="add">
    <object class="ConcordData.MsgData" id="MsgData0">
     <void class="ConcordData.MsgData" method="getField">
@@ -121,19 +89,9 @@
  </void>
 </void>
 <void idref="ArrayList1"/>
-<void class="ConcordData.GroupData" id="Field2" method="getField">
- <string>Chats</string>
- <void id="ArrayList2" method="get">
-  <object idref="GroupData0"/>
-  <void method="add">
-   <object idref="ChatListing0"/>
-  </void>
- </void>
-</void>
-<void idref="ArrayList2"/>
 <void class="ConcordData.UserDataRepo" id="Field3" method="getField">
  <string>Names</string>
- <void id="HashMap0" method="get">
+ <void id="HashMap1" method="get">
   <object idref="UserDataRepo0"/>
   <void method="put">
    <string>demo2</string>
@@ -145,55 +103,99 @@
   </void>
  </void>
 </void>
-<void idref="HashMap0"/>
-<void class="ConcordData.GroupData" id="Field4" method="getField">
- <string>Roles</string>
- <void id="ArrayList3" method="get">
-  <object idref="GroupData0"/>
-  <void method="add">
-   <object idref="Role0"/>
-  </void>
-  <void method="add">
-   <object idref="Role0"/>
-  </void>
-  <void method="add">
-   <object idref="Role1"/>
-  </void>
- </void>
-</void>
-<void idref="ArrayList3"/>
-<void class="ConcordData.UserDataRepo" id="Field5" method="getField">
+<void idref="HashMap1"/>
+<void class="ConcordData.UserDataRepo" id="Field4" method="getField">
  <string>Users</string>
- <void id="HashMap1" method="get">
+ <void id="HashMap2" method="get">
   <object idref="UserDataRepo0"/>
   <void method="put">
    <long>1</long>
-   <object idref="UserData0"/>
+   <object class="ConcordData.UserData" id="UserData0">
+    <void class="ConcordData.UserData" method="getField">
+     <string>UserId</string>
+     <void method="set">
+      <object idref="UserData0"/>
+      <long>1</long>
+     </void>
+    </void>
+    <void class="ConcordData.UserData" method="getField">
+     <string>DisplayName</string>
+     <void method="set">
+      <object idref="UserData0"/>
+      <string>demo2</string>
+     </void>
+    </void>
+    <void class="ConcordData.UserData" method="getField">
+     <string>Password</string>
+     <void method="set">
+      <object idref="UserData0"/>
+      <string>demo2</string>
+     </void>
+    </void>
+   </object>
   </void>
   <void method="put">
    <long>0</long>
-   <object idref="UserData1"/>
-  </void>
- </void>
-</void>
-<void idref="HashMap1"/>
-<void class="ConcordData.GroupDataRepo" id="Field6" method="getField">
- <string>Groups</string>
- <void id="HashMap2" method="get">
-  <object idref="GroupDataRepo0"/>
-  <void method="put">
-   <long>0</long>
-   <object idref="GroupData0"/>
+   <object class="ConcordData.UserData" id="UserData1">
+    <void class="ConcordData.UserData" method="getField">
+     <string>DisplayName</string>
+     <void method="set">
+      <object idref="UserData1"/>
+      <string>demo</string>
+     </void>
+    </void>
+    <void class="ConcordData.UserData" method="getField">
+     <string>Password</string>
+     <void method="set">
+      <object idref="UserData1"/>
+      <string>demo</string>
+     </void>
+    </void>
+   </object>
   </void>
  </void>
 </void>
 <void idref="HashMap2"/>
-<void class="ConcordData.GroupUserData" id="Field7" method="getField">
+<void class="ConcordData.GroupData" id="Field5" method="getField">
  <string>Roles</string>
- <void id="ArrayList4" method="get">
-  <object idref="GroupUserData1"/>
+ <void id="ArrayList2" method="get">
+  <object idref="GroupData0"/>
+  <void method="add">
+   <object class="ConcordData.Role" id="Role1">
+    <void class="ConcordData.Role" method="getField">
+     <string>Name</string>
+     <void method="set">
+      <object idref="Role1"/>
+      <string>demorole</string>
+     </void>
+    </void>
+   </object>
+  </void>
   <void method="add">
    <object idref="Role1"/>
+  </void>
+  <void method="add">
+   <object idref="Role0"/>
+  </void>
+ </void>
+</void>
+<void idref="ArrayList2"/>
+<void class="ConcordData.GroupUserData" id="Field6" method="getField">
+ <string>Roles</string>
+ <void id="ArrayList3" method="get">
+  <object idref="GroupUserData1"/>
+  <void method="add">
+   <object idref="Role0"/>
+  </void>
+ </void>
+</void>
+<void idref="ArrayList3"/>
+<void class="ConcordData.GroupData" id="Field7" method="getField">
+ <string>Chats</string>
+ <void id="ArrayList4" method="get">
+  <object idref="GroupData0"/>
+  <void method="add">
+   <object idref="ChatListing0"/>
   </void>
  </void>
 </void>

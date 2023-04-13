@@ -1,35 +1,195 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-   <right>
-      <ScrollBar orientation="VERTICAL" BorderPane.alignment="CENTER" />
-   </right>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sprint3.viewController">
    <left>
       <HBox prefHeight="376.0" prefWidth="185.0" BorderPane.alignment="CENTER">
          <children>
-            <ScrollBar orientation="VERTICAL" prefHeight="400.0" prefWidth="1.0" />
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <ChoiceBox prefWidth="150.0" />
-                  <ListView prefHeight="400.0" prefWidth="94.0" />
+                  <Label id="grpMain" fx:id="grpMain" prefHeight="51.0" prefWidth="400.0" text="UserName">
+                     <contextMenu>
+                        <ContextMenu>
+                           <items>
+                              <MenuItem fx:id="grpContext0" mnemonicParsing="false" onAction="#makeGroup" text="Make Group" />
+                              <MenuItem fx:id="grpContext1" mnemonicParsing="false" onAction="#deleteUser" text="Delete User" />
+                           </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>                                                
+                  <VBox onScroll="#onGrpScroll" prefHeight="379.0" prefWidth="93.0">                                
+                     <children>                                                                                     
+                        <Label id="grpBox0" fx:id="grpBox0" onMouseClicked="#onGrpSelect" prefHeight="51.0" prefWidth="400.0" text="ex label">
+                            <contextMenu>                                                                                            
+     						 <ContextMenu>                                                                                          
+							    <items>                                                                                              
+							      <MenuItem fx:id="grpBoxContext0" mnemonicParsing="false" onAction="#renameGrp" text="Rename Group" />  
+							    </items>                                                                                             
+ 						     </ContextMenu>                                                                                         
+						   </contextMenu>                                                                                                                                                                                                
+                        </Label>  
+                        <Label id="grpBox1" fx:id="grpBox1" onMouseClicked="#onGrpSelect" prefHeight="51.0" prefWidth="400.0" text="ex label">
+                            <contextMenu>                                                                                            
+     						 <ContextMenu>                                                                                          
+							    <items>                                                                                              
+							      <MenuItem fx:id="grpBoxContext1" mnemonicParsing="false" onAction="#renameGrp" text="Rename Group" />  
+							    </items>                                                                                             
+ 						     </ContextMenu>                                                                                         
+						   </contextMenu>                                                                                                                                                                                                
+                        </Label>    
+                        <Label id="grpBox2" fx:id="grpBox2" onMouseClicked="#onGrpSelect" prefHeight="51.0" prefWidth="400.0" text="ex label">
+                            <contextMenu>                                                                                            
+     						 <ContextMenu>                                                                                          
+							    <items>                                                                                              
+							      <MenuItem fx:id="grpBoxContext2" mnemonicParsing="false" onAction="#renameGrp" text="Rename Group" />  
+							    </items>                                                                                             
+ 						     </ContextMenu>                                                                                         
+						   </contextMenu>                                                                                                                                                                                                
+                        </Label>    
+                        <Label id="grpBox3" fx:id="grpBox3" onMouseClicked="#onGrpSelect" prefHeight="51.0" prefWidth="400.0" text="ex label">
+                            <contextMenu>                                                                                            
+     						 <ContextMenu>                                                                                          
+							    <items>                                                                                              
+							      <MenuItem fx:id="grpBoxContext3" mnemonicParsing="false" onAction="#renameGrp" text="Rename Group" />  
+							    </items>                                                                                             
+ 						     </ContextMenu>                                                                                         
+						   </contextMenu>                                                                                                                                                                                                
+                        </Label>    
+                        <Label id="grpBox4" fx:id="grpBox4" onMouseClicked="#onGrpSelect" prefHeight="51.0" prefWidth="400.0" text="ex label">
+                            <contextMenu>                                                                                            
+     						 <ContextMenu>                                                                                          
+							    <items>                                                                                              
+							      <MenuItem fx:id="grpBoxContext4" mnemonicParsing="false" onAction="#renameGrp" text="Rename Group" />  
+							    </items>                                                                                             
+ 						     </ContextMenu>                                                                                         
+						   </contextMenu>                                                                                                                                                                                                
+                        </Label>    
+                        <Label id="grpBox5" fx:id="grpBox5" onMouseClicked="#onGrpSelect" prefHeight="51.0" prefWidth="400.0" text="ex label">
+                            <contextMenu>                                                                                            
+     						 <ContextMenu>                                                                                          
+							    <items>                                                                                              
+							      <MenuItem fx:id="grpBoxContext5" mnemonicParsing="false" onAction="#renameGrp" text="Rename Group" />  
+							    </items>                                                                                             
+ 						     </ContextMenu>                                                                                         
+						   </contextMenu>                                                                                                                                                                                                
+                        </Label>    
+                        <Label id="grpBox6" fx:id="grpBox6" onMouseClicked="#onGrpSelect" prefHeight="51.0" prefWidth="400.0" text="ex label">
+                            <contextMenu>                                                                                            
+     						 <ContextMenu>                                                                                          
+							    <items>                                                                                              
+							      <MenuItem fx:id="grpBoxContext6" mnemonicParsing="false" onAction="#renameGrp" text="Rename Group" />  
+							    </items>                                                                                             
+ 						     </ContextMenu>                                                                                         
+						   </contextMenu>                                                                                                                                                                                                
+                        </Label>    
+                        <Label id="grpBox7" fx:id="grpBox7" onMouseClicked="#onGrpSelect" prefHeight="51.0" prefWidth="400.0" text="ex label">
+                            <contextMenu>                                                                                            
+     						 <ContextMenu>                                                                                          
+							    <items>                                                                                              
+							      <MenuItem fx:id="grpBoxContext7" mnemonicParsing="false" onAction="#renameGrp" text="Rename Group" />  
+							    </items>                                                                                             
+ 						     </ContextMenu>                                                                                         
+						   </contextMenu>                                                                                                                                                                                                
+                        </Label>    
+                     </children>                                                                                    
+                  </VBox>                                                                                           
                </children>
             </VBox>
-            <ScrollBar orientation="VERTICAL" prefHeight="400.0" prefWidth="18.0" />
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <ChoiceBox prefWidth="150.0" />
-                  <ListView prefHeight="400.0" prefWidth="188.0" />
+                  <Label id="chnMain" fx:id="grpLabel" prefHeight="51.0" prefWidth="400.0" text="ServerName">
+	                  <contextMenu>                                                                                            
+                        <ContextMenu>                                                                                          
+                          <items>                                                                                              
+                            <MenuItem fx:id="chnContext6" mnemonicParsing="false" onAction="#makeChn" text="Add Channel" />  
+                            <MenuItem fx:id="chnContext0" mnemonicParsing="false" onAction="#addRole" text="Add Role" />      
+                            <MenuItem fx:id="chnContext1" mnemonicParsing="false" onAction="#addUser" text="Add User" />      
+                            <MenuItem fx:id="chnContext2" mnemonicParsing="false" onAction="#giveRole" text="Give roles" />    
+                            <MenuItem fx:id="chnContext3" mnemonicParsing="false" onAction="#deleteRole" text="Delete Role" />   
+                            <MenuItem fx:id="chnContext4" mnemonicParsing="false" onAction="#kickUser" text="Kick User" />     
+                            <MenuItem fx:id="chnContext5" mnemonicParsing="false" onAction="#deleteGrp" text="Delete Group" />  
+                          </items>                                                                                             
+                        </ContextMenu>                                                                                         
+                     </contextMenu>                                                                                            
+                  </Label>                                                                                                     
+                  <VBox onScroll="#onChnScroll" prefHeight="379.0" prefWidth="93.0">
+                     <children>
+                        <Label id="chnBox0" fx:id="chnBox0" onMouseClicked="#onChnSelect" prefHeight="51.0" prefWidth="400.0" text="ex label">
+                            <contextMenu>                                                                                            
+     						 <ContextMenu>                                                                                          
+							    <items>                                                                                              
+							      <MenuItem fx:id="chnBoxContext0" mnemonicParsing="false" onAction="#renameChn" text="Rename Channel" />  
+							    </items>                                                                                             
+ 						     </ContextMenu>                                                                                         
+						   </contextMenu>                                                                                                                                                                                                
+                        </Label>
+                        <Label id="chnBox1" fx:id="chnBox1" onMouseClicked="#onChnSelect" prefHeight="51.0" prefWidth="400.0" text="ex label">
+                            <contextMenu>                                                                                            
+     						 <ContextMenu>                                                                                          
+							    <items>                                                                                              
+							      <MenuItem fx:id="chnBoxContext1" mnemonicParsing="false" onAction="#renameChn" text="Rename Channel" />  
+							    </items>                                                                                             
+ 						     </ContextMenu>                                                                                         
+						   </contextMenu>                                                                                                                                                                                                
+                        </Label>
+                        <Label id="chnBox2" fx:id="chnBox2" onMouseClicked="#onChnSelect" prefHeight="51.0" prefWidth="400.0" text="ex label">
+                            <contextMenu>                                                                                            
+     						 <ContextMenu>                                                                                          
+							    <items>                                                                                              
+							      <MenuItem fx:id="chnBoxContext2" mnemonicParsing="false" onAction="#renameChn" text="Rename Channel" />  
+							    </items>                                                                                             
+ 						     </ContextMenu>                                                                                         
+						   </contextMenu>                                                                                                                                                                                                
+                        </Label>
+                        <Label id="chnBox3" fx:id="chnBox3" onMouseClicked="#onChnSelect" prefHeight="51.0" prefWidth="400.0" text="ex label">
+                            <contextMenu>                                                                                            
+     						 <ContextMenu>                                                                                          
+							    <items>                                                                                              
+							      <MenuItem fx:id="chnBoxContext3" mnemonicParsing="false" onAction="#renameChn" text="Rename Channel" />  
+							    </items>                                                                                             
+ 						     </ContextMenu>                                                                                         
+						   </contextMenu>                                                                                                                                                                                                
+                        </Label>
+                        <Label id="chnBox4" fx:id="chnBox4" onMouseClicked="#onChnSelect" prefHeight="51.0" prefWidth="400.0" text="ex label">
+                            <contextMenu>                                                                                            
+     						 <ContextMenu>                                                                                          
+							    <items>                                                                                              
+							      <MenuItem fx:id="chnBoxContext4" mnemonicParsing="false" onAction="#renameChn" text="Rename Channel" />  
+							    </items>                                                                                             
+ 						     </ContextMenu>                                                                                         
+						   </contextMenu>                                                                                                                                                                                                
+                        </Label>
+                        <Label id="chnBox5" fx:id="chnBox5" onMouseClicked="#onChnSelect" prefHeight="51.0" prefWidth="400.0" text="ex label">
+                            <contextMenu>                                                                                            
+     						 <ContextMenu>                                                                                          
+							    <items>                                                                                              
+							      <MenuItem fx:id="chnBoxContext5" mnemonicParsing="false" onAction="#renameChn" text="Rename Channel" />  
+							    </items>                                                                                             
+ 						     </ContextMenu>                                                                                         
+						   </contextMenu>                                                                                                                                                                                                
+                        </Label>
+                        <Label id="chnBox6" fx:id="chnBox6" onMouseClicked="#onChnSelect" prefHeight="51.0" prefWidth="400.0" text="ex label">
+                            <contextMenu>                                                                                            
+     						 <ContextMenu>                                                                                          
+							    <items>                                                                                              
+							      <MenuItem fx:id="chnBoxContext6" mnemonicParsing="false" onAction="#renameChn" text="Rename Channel" />  
+							    </items>                                                                                             
+ 						     </ContextMenu>                                                                                         
+						   </contextMenu>                                                                                                                                                                                                
+                        </Label>
+                        <Label id="chnBox7" fx:id="chnBox7" onMouseClicked="#onChnSelect" prefHeight="51.0" prefWidth="400.0" text="ex label">
+                                                                                                                                                                                                                          
+                        </Label>
+                     </children>
+                  </VBox>
                </children>
             </VBox>
          </children>
@@ -38,13 +198,87 @@
    <center>
       <VBox prefHeight="400.0" prefWidth="457.0" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="58.0" prefWidth="270.0" text="  Server name: Channel name" />
-            <ListView prefHeight="383.0" prefWidth="400.0" />
+            <Label id="serverChannelLabel" fx:id="channelLabel" prefHeight="58.0" prefWidth="270.0" text=" Channel name" >
+           		 <contextMenu>                                                                                            
+     						 <ContextMenu>                                                                                          
+							    <items>                                                                                              
+							    <MenuItem fx:id="chnBoxContext" mnemonicParsing="false" onAction="#deleteChn" text="Delete Channel" />  
+							  </items>                                                                                             
+ 						 </ContextMenu>                                                                                         
+					</contextMenu>  
+			</Label>
+            <VBox id="msgList" onScroll="#onMsgScroll" prefHeight="388.0" prefWidth="400.0">
+               <children>
+                  <Label id="msgBox6" fx:id="msgBox6" prefHeight="51.0" prefWidth="400.0" text="ex label">
+                    <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem fx:id="msgContext6d" mnemonicParsing="false" onAction="#deleteChn" text="Delete" />
+                            <MenuItem fx:id="msgContext6r" mnemonicParsing="false" onAction="#replyMsg" text="Quote" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu></Label>
+                  <Label id="msgBox5" fx:id="msgBox5" prefHeight="51.0" prefWidth="400.0" text="ex label">
+                    <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem fx:id="msgContext5d" mnemonicParsing="false" onAction="#deleteMsg" text="Delete" />
+                            <MenuItem fx:id="msgContext5r" mnemonicParsing="false" onAction="#replyMsg" text="Quote" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu></Label>
+                  <Label id="msgBox4" fx:id="msgBox4" prefHeight="51.0" prefWidth="400.0" text="ex label">
+                    <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem fx:id="msgContext4d" mnemonicParsing="false" onAction="#deleteMsg" text="Delete" />
+                            <MenuItem fx:id="msgContext4r" mnemonicParsing="false" onAction="#replyMsg" text="Quote" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu></Label>
+                  <Label id="msgBox3" fx:id="msgBox3" prefHeight="51.0" prefWidth="400.0" text="ex label">
+                    <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem fx:id="msgContext3d" mnemonicParsing="false" onAction="#deleteMsg" text="Delete" />
+                            <MenuItem fx:id="msgContext3r" mnemonicParsing="false" onAction="#replyMsg" text="Quote" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu></Label>
+                  <Label id="msgBox2" fx:id="msgBox2" prefHeight="51.0" prefWidth="400.0" text="ex label">
+                 	 <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem fx:id="msgContext2d" mnemonicParsing="false" onAction="#deleteMsg" text="Delete" />
+                            <MenuItem fx:id="msgContext2r" mnemonicParsing="false" onAction="#replyMsg" text="Quote" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu></Label>
+                  <Label id="msgBox1" fx:id="msgBox1" prefHeight="51.0" prefWidth="400.0" text="ex label">
+                 	 <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem fx:id="msgContext1d" mnemonicParsing="false" onAction="#deleteMsg" text="Delete" />
+                            <MenuItem fx:id="msgContext1r" mnemonicParsing="false" onAction="#replyMsg" text="Quote" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu></Label>
+                  <Label id="msgBox0" fx:id="msgBox0" prefHeight="51.0" prefWidth="400.0" text="ex label">
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem fx:id="msgContext0d" mnemonicParsing="false" onAction="#deleteMsg" text="Delete" />
+                            <MenuItem fx:id="msgContext0r" mnemonicParsing="false" onAction="#replyMsg" text="Quote" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu></Label>
+               </children>
+            </VBox>
             <HBox prefHeight="64.0" prefWidth="400.0">
                <children>
-                  <Button mnemonicParsing="false" text="+" />
-                  <TextField prefHeight="24.0" prefWidth="316.0" />
-                  <Button mnemonicParsing="false" text="Send" />
+                  <Button id="plusButton" mnemonicParsing="false" onAction="#onPlus" text="+" />
+                  <TextField id="msgField" fx:id="msgField" prefHeight="24.0" prefWidth="316.0" />
+                  <Button id="sendButton" mnemonicParsing="false" onAction="#onMsgSend" text="Send" />
                </children>
             </HBox>
          </children>

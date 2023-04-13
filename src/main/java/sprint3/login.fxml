@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sprint3.loginController">
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -24,8 +23,8 @@
                </font>
             </Label>
             <TextField />
-            <Button mnemonicParsing="false" text="login" />
-            <Button mnemonicParsing="false" text="register" />
+            <Button fx:id="Login" mnemonicParsing="false" onAction="#login" text="login" />
+            <Button fx:id="Reg" mnemonicParsing="false" onAction="#register" text="register" />
          </children>
       </VBox>
    </center>

@@ -83,6 +83,9 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 
 	@Override
 	public GroupData makeGroup(long UserId, GroupData newGroup) throws RemoteException {
+		if(newGroup == null)
+			return null;
+		
 		GroupDataRepository.addGroup(newGroup);
 		return newGroup;
 	}
@@ -109,7 +112,11 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 	@Override
 	public GroupData inviteUser(long UserId, long GroupId, long InvitedUserId) throws RemoteException {
 		if( checkPerms(UserId, GroupId, "invite user") == true ) {
-			GroupDataRepository.findGroupById(GroupId).addUser(currentUserRepository.findUserById(InvitedUserId));
+			UserData newUser = currentUserRepository.findUserById(InvitedUserId);
+			if(newUser == null)
+				return null;
+			
+			GroupDataRepository.findGroupById(GroupId).addUser(newUser);
 			return GroupDataRepository.findGroupById(GroupId);
 		} else
 			return null;
@@ -146,9 +153,10 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 	public GroupData deleteRole(long UserId, long GroupId, String RoleName) throws RemoteException {
 		if( checkPerms(UserId, GroupId, "delete role") == true ) {
 			for(int i = 0; i < GroupDataRepository.findGroupById(GroupId).Roles.size(); i++) {
-				if(GroupDataRepository.findGroupById(GroupId).Roles.get(i).Name.equals(RoleName))
+				if(GroupDataRepository.findGroupById(GroupId).Roles.get(i).Name.equals(RoleName)) {
 					GroupDataRepository.findGroupById(GroupId).Roles.remove(i);
-				return GroupDataRepository.findGroupById(GroupId);
+					return GroupDataRepository.findGroupById(GroupId);
+				}
 			}
 			return null;
 		} else
@@ -167,6 +175,9 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 
 	@Override
 	public UserData addUser(UserData newUser) throws RemoteException {
+		if(newUser == null)
+			return null;
+		
 		currentUserRepository.addUser(newUser);
 		return newUser;
 	}
@@ -177,15 +188,17 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 			GroupData group = GroupDataRepository.findGroupById(GroupId);
 			if(giveOrTake == false)
 				for(int i = 0; i < group.findGroupUserById(TargetUser).Roles.size(); i++) {
-					if(group.findGroupUserById(TargetUser).Roles.get(i).Name.equals(RoleName))
+					if(group.findGroupUserById(TargetUser).Roles.get(i).Name.equals(RoleName)) {
 						group.findGroupUserById(TargetUser).Roles.remove(i);
-					return GroupDataRepository.findGroupById(GroupId);
+						return GroupDataRepository.findGroupById(GroupId);
+					}
 				}
 			else
 				for(int i = 0; i < group.Roles.size(); i++) {
-					if(group.Roles.get(i).Name.equals(RoleName))
+					if(group.Roles.get(i).Name.equals(RoleName)) {
 						group.findGroupUserById(TargetUser).Roles.add(group.Roles.get(i));
-					return GroupDataRepository.findGroupById(GroupId);
+						return GroupDataRepository.findGroupById(GroupId);
+					}
 				}
 				
 				
@@ -196,6 +209,9 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 	
 	private boolean checkPerms(long UserId, long GroupId, String PermName){
 		GroupData group = GroupDataRepository.findGroupById(GroupId);
+		if(group == null)
+			return false;
+		
 		GroupUserData user = group.findGroupUserById(UserId);
 		if (user != null)
 			if(PermName != null)

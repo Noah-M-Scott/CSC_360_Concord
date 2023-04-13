@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class ChatListing {
 	public long ChatId;
 	public ArrayList<MsgData> Chat = new ArrayList<MsgData>();
-	public String ChatName;
+	public String ChatName = "New Chat";
 	
 	
 	public boolean deleteMsg(long index) {

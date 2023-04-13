@@ -100,7 +100,7 @@ public class ClientObject implements ClientInterface, Serializable {
 		try {             
 			GroupData temp = ServerProxy.makeRole(UserId, GroupId, newRole);
 			if(temp == null)
-				return "Failed to make group";  
+				return "Failed to make role";  
 			else
 				CurrentGroup = temp;
 		} catch (RemoteException e) {                                    
