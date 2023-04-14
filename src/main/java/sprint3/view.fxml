@@ -20,6 +20,7 @@
                         <ContextMenu>
                            <items>
                               <MenuItem fx:id="grpContext0" mnemonicParsing="false" onAction="#makeGroup" text="Make Group" />
+                              <MenuItem fx:id="grpContext2" mnemonicParsing="false" onAction="#makeGroup" text="Join Group" />
                               <MenuItem fx:id="grpContext1" mnemonicParsing="false" onAction="#deleteUser" text="Delete User" />
                            </items>
                         </ContextMenu>
