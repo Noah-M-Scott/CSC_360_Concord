@@ -12,20 +12,22 @@ import javafx.scene.control.MenuItem;
 
 public class model {
 
+	//this is the current chat listing the msg window uses
 	int msgIndex = 0;
 	int msgWindow;
 	ChatListing currentChannel = new ChatListing();
 	
+	//this is the current group data the chn window uses
 	int chnIndex = 0;
 	int chnWindow;
 	GroupData currentGroup = new GroupData();
 	
+	//this is the current groupDataRepo the grp window uses
 	int grpIndex = 0;
 	int userGroupIndex = 0;
 	int grpWindow;	
 	UserData currentUser = new UserData();
 	GroupDataRepo currentGroupDataRepo = new GroupDataRepo();
-	
 	
 	
 	//-----------------the stuff in this box is all changed to use the server-------------------------
@@ -50,12 +52,14 @@ public class model {
 		currentChannel.ChatName = in;
 	}
 	
+	//change to sprint one, groupData now has a public "Name" string
 	public void renameGrp(String in) {
 		currentGroup.Name = in;
 	}
 	
 	public void makeMsg(String message) {
 		MsgData newMsg = new MsgData();
+		newMsg.deleted = false;
 		newMsg.Text = currentUser.DisplayName + ": " + message;
 		currentChannel.addMsg(newMsg);
 	}
@@ -63,36 +67,45 @@ public class model {
     void deleteGrp() {
     	currentGroupDataRepo.deleteGroup(currentGroup.GroupId);
     	currentUser.JoinedGroupIds.remove(userGroupIndex);
+    	selectGroup(0);
     }
 
     void deleteChn() {
     	currentGroup.deleteChat(currentChannel.ChatId);
+    	selectChannel(0);
     }
+    
+    void deleteMsg(int inIndex) {
+    	currentChannel.Chat.get(currentChannel.Chat.size() - 1 - (msgIndex + inIndex)).Text = "deleted";
+    	currentChannel.Chat.get(currentChannel.Chat.size() - 1 - (msgIndex + inIndex)).deleted = true;
+    }
+    
 	
 	//-------------------------------------------------------------------
 	
 	
-	
-	public void selectChannel(int channelIndex) {
-		if(channelIndex >= currentGroup.Chats.size()) {
+    //change the current chat/channel to the one clicked, array position equal to chnIndex + offset
+	public void selectChannel(int offset) {
+		if(offset >= currentGroup.Chats.size()) {
 			currentChannel = new ChatListing();
 			return;
 		}
 		
-		currentChannel = currentGroup.Chats.get(grpIndex + channelIndex);
+		currentChannel = currentGroup.Chats.get(grpIndex + offset);
 		msgIndex = 0;
 	}
 	
-	public void selectGroup(int groupIndex) {
-		if(groupIndex >= currentUser.JoinedGroupIds.size())
+	//change the current group to the one clicked, array position equal to grpIndex + offset
+	public void selectGroup(int offset) {
+		if(offset >= currentUser.JoinedGroupIds.size())
 			return;
 		
-		currentGroup = currentGroupDataRepo.Groups.get(currentUser.JoinedGroupIds.get(grpIndex + groupIndex));
+		currentGroup = currentGroupDataRepo.Groups.get(currentUser.JoinedGroupIds.get(grpIndex + offset));
 		chnIndex = 0;
 	}
 	
 	
-	
+	//set how many labels are in the msg, chn, and grp windows
 	public void setMsgWindow(int size) {
 		msgWindow = size;
 	}
@@ -105,32 +118,37 @@ public class model {
 		grpWindow = size;
 	}
 	
+	//call this to step from the index, grabbing messages
 	int msgstep = 0;
 	public String getMsgWindow() {
-		if(msgstep == msgWindow - 1) {
+		if(msgstep == msgWindow - 1) { //reset the step to zero after calling the size of the window
 			int hold = msgstep;
 			msgstep = 0;
 			
-			if(msgIndex + hold >= currentChannel.Chat.size())
+			if(((msgIndex + hold)) >= currentChannel.Chat.size()) //non-existant message
 				return "";
 			
-			//if(currentChannel.Chat.get(currentChannel.Chat.size() - 1 - (msgIndex + hold)).deleted)
+			
+			//delete message text, see if you can get this to work, I gave up and rewrote the message to say deleted instead
+			//else if(currentChannel.Chat.get(currentChannel.Chat.size() - 1 - (msgIndex + hold)).deleted == true) 
 			//	return "deleted";
 			
 			return currentChannel.Chat.get(currentChannel.Chat.size() - 1 - (msgIndex + hold)).Text;
 		}
 		
-		if(msgIndex + msgstep >= currentChannel.Chat.size()) {
+		if((msgIndex + msgstep) >= currentChannel.Chat.size()) {
 			msgstep++;
 			return "";
 		}
 		
-		//if(currentChannel.Chat.get(currentChannel.Chat.size() - 1 - (msgIndex + msgstep++)).deleted)
+		//delete message text, see if you can get this to work, I gave up and rewrote the message to say deleted instead
+		//else if(currentChannel.Chat.get(currentChannel.Chat.size() - 1 - (msgIndex + msgstep)).deleted == true)
 		//	return "deleted";
 		
 		return currentChannel.Chat.get(currentChannel.Chat.size() - 1 - (msgIndex + msgstep++)).Text;
 	}
 	
+	//see above
 	int chnstep = 0;
 	public String getChnWindow() {
 		if(chnstep == chnWindow - 1) {
@@ -151,6 +169,7 @@ public class model {
 		return currentGroup.Chats.get(chnIndex + chnstep++).ChatName;
 	}
 	
+	//see above
 	int grpstep = 0;
 	public String getGrpWindow() {
 		if(grpstep == grpWindow - 1) {
@@ -172,14 +191,17 @@ public class model {
 		return currentGroupDataRepo.Groups.get(currentUser.JoinedGroupIds.get(grpIndex + grpstep++)).Name;
 	}
 	
+	//increment the index for the message window, saturating
 	public void incMsgWindow() {
 		msgIndex = msgIndex < (currentChannel.Chat.size() - msgWindow) ? msgIndex + 1 : msgIndex;
 	}
 	
+	//decrement the index for the message window, saturating
 	public void decMsgWindow() {
 		msgIndex -= msgIndex > 0 ? 1 : 0;
 	}
 	
+	//see above, for bellow
 	public void incChnWindow() {
 		chnIndex = chnIndex < (currentGroup.Chats.size() - chnWindow) ? chnIndex + 1 : chnIndex;
 	}
