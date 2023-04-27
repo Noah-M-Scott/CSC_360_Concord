@@ -8,6 +8,30 @@ public class ChatListing {
 	public String ChatName = "New Chat";
 	
 	
+	public long getChatId() {
+		return ChatId;
+	}
+
+	public void setChatId(long chatId) {
+		ChatId = chatId;
+	}
+
+	public ArrayList<MsgData> getChat() {
+		return Chat;
+	}
+
+	public void setChat(ArrayList<MsgData> chat) {
+		Chat = chat;
+	}
+
+	public String getChatName() {
+		return ChatName;
+	}
+
+	public void setChatName(String chatName) {
+		ChatName = chatName;
+	}
+
 	public boolean deleteMsg(long index) {
 		
 		if( Chat.size() - 1 < index )

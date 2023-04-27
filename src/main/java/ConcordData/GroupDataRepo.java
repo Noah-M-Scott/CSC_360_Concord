@@ -19,4 +19,20 @@ public class GroupDataRepo {
 		idTally++;
 		Groups.put(in.GroupId, in);
 	}
+
+	public HashMap<Long, GroupData> getGroups() {
+		return Groups;
+	}
+
+	public void setGroups(HashMap<Long, GroupData> groups) {
+		Groups = groups;
+	}
+
+	public long getIdTally() {
+		return idTally;
+	}
+
+	public void setIdTally(long idTally) {
+		this.idTally = idTally;
+	}
 }

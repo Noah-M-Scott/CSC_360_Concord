@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import ConcordData.*;
 
-class Sprint2Test {
+public class Sprint2Test {
 
 	ServerObject s;
 	ClientObject c;
@@ -20,6 +20,7 @@ class Sprint2Test {
 	
 
 	@Test
+	public
 	void test() throws Exception {
 		
 		//test last sprint
@@ -48,6 +49,7 @@ class Sprint2Test {
 		//new group + admin role
 		GroupData demoGroup = new GroupData();
 		demoGroup.addUser(demoUser);
+		demoGroup.Name = "demo";
 		Role admin = new Role();
 		admin.Name = "admin";
 		admin.Perms.add(new Pair<String, Boolean>("make chat", true));
@@ -80,10 +82,6 @@ class Sprint2Test {
 		demoMsg.deleted = false;
 		demoMsg.Text = "demo";
 		assertEquals(c.sendMsg(c.CurrentUser.UserId, c.CurrentGroup.GroupId, 0, demoMsg), "ok");
-		
-		//delete msg and chat
-		assertEquals(c.deleteMsg(c.CurrentUser.UserId, c.CurrentGroup.GroupId, 0, 0), "ok");
-		assertEquals(c.deleteChatListing(c.CurrentUser.UserId, c.CurrentGroup.GroupId, 0), "ok");
 		
 		//new role
 		Role demoRole = new Role();
@@ -118,29 +116,72 @@ class Sprint2Test {
 		assertEquals(c.giveTakeRole(demoUser2.UserId, c.CurrentGroup.GroupId, demoUser2.UserId, "admin", true), "Failed to give/take role");
 		assertEquals(c.giveTakeRole(c.CurrentUser.UserId, c.CurrentGroup.GroupId, demoUser2.UserId, "demorole", false), "ok");
 		
-		//save server to disk
-		s.saveToDisk("test.xml");
-		//s.loadFromDisk("test.xml");
-		
 		//can only delete valid roles
 		assertEquals(c.deleteRole(c.CurrentUser.UserId, c.CurrentGroup.GroupId, "notArole"), "Failed to delete role");
 		assertEquals(c.deleteRole(c.CurrentUser.UserId, c.CurrentGroup.GroupId, "demorole"), "ok");
 		
+		
+		
+		
+		//make a spy user
+		ClientSpy cs = new ClientSpy(registry);
+		UserData spyUser = new UserData();
+		spyUser.DisplayName = "demospy";
+		spyUser.Password = "demo";
+		assertEquals(cs.addUser(spyUser), "ok");
+		assertEquals(cs.login("demospy", "demo"), "ok");
+		
+		
+		assertEquals(cs.callCount, 0);
+		
 		//send out an updated group to rmi observers
 		s.sendOutUpdate(c.CurrentGroup.GroupId);
+		
+		assertEquals(cs.callCount, 1);
+		
 		
 		
 		//client lets the server know it's logging off
 		c.alertStatus(c.CurrentUser.UserId, 1);
 		c.alertStatus(c.CurrentUser.UserId, 0);
 		
+		//save server to disk
+		s.saveToDisk("test.xml");
+		
+		//restore from disk
+		ServerObject s2 = new ServerObject();
+		
+		//assert there are groups
+		s2.loadFromDisk("test.xml");
+		
+		//assert there are groups
+		assertEquals(s2.GroupDataRepository.Groups.isEmpty(), false);
+		
+		//assert there is a group named demo
+		assertEquals(s2.GroupDataRepository.Groups.get(c.CurrentGroup.GroupId).Name, "demo");
+		
+		//assert there is a chat named demoListing in demo
+		assertEquals(s2.GroupDataRepository.Groups.get(c.CurrentGroup.GroupId).Chats.get(0).ChatName, "demoListing");
+		
+		//assert there is a message "demo" in demoListing in demo
+		assertEquals(s2.GroupDataRepository.Groups.get(c.CurrentGroup.GroupId).Chats.get(0).Chat.get(0).Text, "demo");
+		
+		//delete msg and chat
+		assertEquals(c.deleteMsg(c.CurrentUser.UserId, c.CurrentGroup.GroupId, 0, 0), "ok");
+		assertEquals(c.deleteChatListing(c.CurrentUser.UserId, c.CurrentGroup.GroupId, 0), "ok");
+		
 		//delete group, and user, only if you have the right password
 		assertEquals(c.deleteGroup(c.CurrentUser.UserId, c.CurrentGroup.GroupId), "ok");
 		assertEquals(c.deleteUser(c.CurrentUser.UserId, "wrongPassword"), "Failed to delete user");
 		assertEquals(c.deleteUser(c.CurrentUser.UserId, "demo"), "ok");
 		
-		//restore from disk
-		s.loadFromDisk("test.xml");
+		
+		//save server to disk
+		s.saveToDisk("test.xml");
+		
+		//show there are now no groups
+		s2.loadFromDisk("test.xml");
+		assertEquals(s2.GroupDataRepository.Groups.isEmpty(), true);
 		
 	}
 

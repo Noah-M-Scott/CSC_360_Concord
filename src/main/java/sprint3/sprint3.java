@@ -1,4 +1,5 @@
 package sprint3;
+import concordSprint2.ClientObject;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -8,8 +9,9 @@ import javafx.stage.Stage;
 
 public class sprint3 extends Application {
 
-	Scene s;
+	Scene sc;
 	Stage mainStage;
+	public static ClientObject Client;
 	
 	public void start(Stage stage) throws Exception {
 		
@@ -28,13 +30,15 @@ public class sprint3 extends Application {
 		viewController cont = loader.getController();
 		
 		
-		lcont.init(this);
+		
 		
 		model vm = new model();
 		cont.setModel(vm);
-		vm.init();
+		vm.init(Client);
 		
-		s = new Scene(view);
+		lcont.init(this, Client, vm);
+		
+		sc = new Scene(view);
 		Scene ls = new Scene(LoginView);
 		
 		stage.setScene(ls);
@@ -42,7 +46,7 @@ public class sprint3 extends Application {
 	}
 	
 	public void nextScene() {
-		mainStage.setScene(s);
+		mainStage.setScene(sc);
 		mainStage.show();
 	}
 	

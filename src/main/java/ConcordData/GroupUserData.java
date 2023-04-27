@@ -21,5 +21,54 @@ public class GroupUserData {
 						return false;
 		return false;
 	}
+
+
+
+
+
+	public long getUserId() {
+		return UserId;
+	}
+
+
+
+
+
+	public void setUserId(long userId) {
+		UserId = userId;
+	}
+
+
+
+
+
+	public String getNickname() {
+		return Nickname;
+	}
+
+
+
+
+
+	public void setNickname(String nickname) {
+		Nickname = nickname;
+	}
+
+
+
+
+
+	public ArrayList<Role> getRoles() {
+		return Roles;
+	}
+
+
+
+
+
+	public void setRoles(ArrayList<Role> roles) {
+		Roles = roles;
+	}
+	
 	
 }

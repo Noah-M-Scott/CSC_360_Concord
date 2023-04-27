@@ -6,7 +6,9 @@ import java.rmi.RemoteException;
 
 public interface serverInterface extends Remote {
 
-
+	public GroupData renameGroup(long UserId, long GroupId, String Name) throws RemoteException; 
+	public GroupData renameChat(long UserId, long GroupId, long ChatId, String Name) throws RemoteException;
+	public UserData updateUserData(long UserId, UserData In) throws RemoteException;
 	public GroupData getGroupData(long UserId, long GroupID) throws RemoteException;
 	public GroupData sendMsg(long UserId, long GroupId, long ChatId, MsgData message) throws RemoteException;
 	public GroupData makeGroup(long UserId, GroupData newGroup) throws RemoteException;

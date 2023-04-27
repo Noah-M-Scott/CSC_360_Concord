@@ -21,9 +21,34 @@ public class UserDataRepo {
 	}
 	
 	public void addUser(UserData in){
-		in.UserId = idTally;
-		idTally++;
+		in.UserId = idTally++;
 		Users.put(in.UserId, in);
 		Names.put(in.DisplayName, in.UserId);
 	}
+
+	public HashMap<Long, UserData> getUsers() {
+		return Users;
+	}
+
+	public void setUsers(HashMap<Long, UserData> users) {
+		Users = users;
+	}
+
+	public HashMap<String, Long> getNames() {
+		return Names;
+	}
+
+	public void setNames(HashMap<String, Long> names) {
+		Names = names;
+	}
+
+	public long getIdTally() {
+		return idTally;
+	}
+
+	public void setIdTally(long idTally) {
+		this.idTally = idTally;
+	}
+	
+	
 }

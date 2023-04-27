@@ -24,7 +24,7 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 	UserDataRepo currentUserRepository = new UserDataRepo();
 	
 	
-	protected ServerObject() throws RemoteException {
+	public ServerObject() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 		
@@ -54,10 +54,17 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 		currentUserRepository = (UserDataRepo)decoder.readObject();
 	}
 	
+	@Override
+	public UserData updateUserData(long UserId, UserData In) {
+		currentUserRepository.Users.replace(UserId, In);
+		return In;
+	}
 	
 	@Override
 	public UserData login(String Name, String Password, ClientInterface client) throws RemoteException {
 		UserData logClient = currentUserRepository.findUserByName(Name);
+		if (logClient == null)
+			return null;
 		if (logClient.Password.equals(Password)) {
 			RMIClientList.put(logClient.UserId, client);
 			return logClient;
@@ -81,6 +88,30 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 			return null;
 	}
 
+	@Override
+	public GroupData renameGroup(long UserId, long GroupId, String Name) throws RemoteException {
+		GroupData group;
+		if( checkPerms(UserId, GroupId, "rename group") == true ) {
+			group = GroupDataRepository.findGroupById(GroupId);
+			group.Name = Name;
+			return group;
+		} else
+			return null;
+	}
+
+	@Override
+	public GroupData renameChat(long UserId, long GroupId, long ChatId, String Name) throws RemoteException {
+		ChatListing chat;
+		if( checkPerms(UserId, GroupId, "rename chat") == true ) {
+			chat = GroupDataRepository.findGroupById(GroupId).findChatById(ChatId);
+			chat.ChatName = Name;
+			return GroupDataRepository.findGroupById(GroupId);
+		} else
+			return null;
+	}
+	
+	
+	
 	@Override
 	public GroupData makeGroup(long UserId, GroupData newGroup) throws RemoteException {
 		if(newGroup == null)
@@ -178,8 +209,11 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 		if(newUser == null)
 			return null;
 		
+		if(currentUserRepository.Names.containsKey(newUser.DisplayName) != false)
+			return null;
+		
 		currentUserRepository.addUser(newUser);
-		return newUser;
+		return currentUserRepository.findUserByName(newUser.DisplayName);
 	}
 
 	@Override

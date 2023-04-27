@@ -9,18 +9,77 @@ public class GroupData {
 	public String Name = "NewGroup";
 	public long GroupId;
 	
+	public ArrayList<GroupUserData> getUsers() {
+		return Users;
+	}
+
+	public void setUsers(ArrayList<GroupUserData> users) {
+		Users = users;
+	}
+
+	public ArrayList<ChatListing> getChats() {
+		return Chats;
+	}
+
+	public void setChats(ArrayList<ChatListing> chats) {
+		Chats = chats;
+	}
+
+	public ArrayList<Role> getRoles() {
+		return Roles;
+	}
+
+	public void setRoles(ArrayList<Role> roles) {
+		Roles = roles;
+	}
+
+	public String getName() {
+		return Name;
+	}
+
+	public void setName(String name) {
+		Name = name;
+	}
+
+	public long getGroupId() {
+		return GroupId;
+	}
+
+	public void setGroupId(long groupId) {
+		GroupId = groupId;
+	}
+
+	public long getChatIdCounter() {
+		return chatIdCounter;
+	}
+
+	public void setChatIdCounter(long chatIdCounter) {
+		this.chatIdCounter = chatIdCounter;
+	}
+
+	private long chatIdCounter;
 	public long addChat(ChatListing in) {
+		in.ChatId = chatIdCounter++;
 		Chats.add(in);
 		return Chats.size() - 1;
 	}
 	
 	public boolean deleteChat(long ChatId) {
-		Chats.remove(Chats.get((int) ChatId));
-		return true;
+		for(int i = 0; i < Chats.size(); i++) {
+			if (Chats.get(i).ChatId == ChatId) {
+				Chats.remove(Chats.get(i));
+				return true;
+			}
+		}
+		return false; 
 	}
 	
 	public ChatListing findChatById(long ChatId){
-		return Chats.get((int) ChatId);
+		for(int i = 0; i < Chats.size(); i++) {
+			if (Chats.get(i).ChatId == ChatId)
+				return Chats.get(i);
+		}
+		return null; 
 	}
 
 	public GroupUserData addUser(UserData in){

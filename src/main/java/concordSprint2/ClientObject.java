@@ -80,7 +80,49 @@ public class ClientObject implements ClientInterface, Serializable {
 			e.printStackTrace();                                         
 		}
 		return "ok";
-	}  
+	}
+	
+	public String updateUserData(long UserId) {
+		try {
+			UserData temp = ServerProxy.updateUserData(UserId, CurrentUser);
+			if(temp == null)
+				return "Failed to make group";  
+			else
+				CurrentUser = temp;
+		} catch (RemoteException e) {                                    
+			// TODO Auto-generated catch block                           
+			e.printStackTrace();                                         
+		}
+		return "ok";
+	}
+	
+	public String renameGroup(long UserId, long GroupId, String Name) throws RemoteException {
+		try {
+			GroupData temp = ServerProxy.renameGroup(UserId, GroupId, Name);
+			if(temp == null)
+				return "Failed to make group";  
+			else
+				CurrentGroup = temp;
+		} catch (RemoteException e) {                                    
+			// TODO Auto-generated catch block                           
+			e.printStackTrace();                                         
+		}
+		return "ok";
+	}
+	
+	public String renameChat(long UserId, long GroupId, long ChatId, String Name) throws RemoteException {
+		try {
+			GroupData temp = ServerProxy.renameChat(UserId, GroupId, ChatId, Name);
+			if(temp == null)
+				return "Failed to make group";  
+			else
+				CurrentGroup = temp;
+		} catch (RemoteException e) {                                    
+			// TODO Auto-generated catch block                           
+			e.printStackTrace();                                         
+		}
+		return "ok";
+	}
 	
 	public String makeGroup(long UserId, GroupData newGroup) throws RemoteException {
 		try {             
@@ -89,6 +131,9 @@ public class ClientObject implements ClientInterface, Serializable {
 				return "Failed to make group";  
 			else
 				CurrentGroup = temp;
+			
+			CurrentUser.JoinedGroupIds.add(newGroup.GroupId);
+			ServerProxy.updateUserData(UserId, CurrentUser);
 		} catch (RemoteException e) {                                    
 			// TODO Auto-generated catch block                           
 			e.printStackTrace();                                         
