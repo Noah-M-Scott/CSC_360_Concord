@@ -10,35 +10,35 @@
    <long>3</long>
   </void>
  </object>
+<void class="ConcordData.UserData" method="getField">
+ <string>UserId</string>
+ <void method="set">
+  <object class="ConcordData.UserData" id="UserData0">
+   <void class="ConcordData.UserData" method="getField">
+    <string>DisplayName</string>
+    <void method="set">
+     <object idref="UserData0"/>
+     <string>demospy</string>
+    </void>
+   </void>
+   <void class="ConcordData.UserData" method="getField">
+    <string>Password</string>
+    <void method="set">
+     <object idref="UserData0"/>
+     <string>demo</string>
+    </void>
+   </void>
+  </object>
+  <long>2</long>
+ </void>
+</void>
 <void class="ConcordData.UserDataRepo" id="Field0" method="getField">
  <string>Users</string>
  <void id="HashMap0" method="get">
   <object idref="UserDataRepo0"/>
   <void method="put">
    <long>2</long>
-   <object class="ConcordData.UserData" id="UserData0">
-    <void class="ConcordData.UserData" method="getField">
-     <string>UserId</string>
-     <void method="set">
-      <object idref="UserData0"/>
-      <long>2</long>
-     </void>
-    </void>
-    <void class="ConcordData.UserData" method="getField">
-     <string>DisplayName</string>
-     <void method="set">
-      <object idref="UserData0"/>
-      <string>demospy</string>
-     </void>
-    </void>
-    <void class="ConcordData.UserData" method="getField">
-     <string>Password</string>
-     <void method="set">
-      <object idref="UserData0"/>
-      <string>demo</string>
-     </void>
-    </void>
-   </object>
+   <object idref="UserData0"/>
   </void>
   <void method="put">
    <long>1</long>

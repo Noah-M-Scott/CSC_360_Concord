@@ -21,7 +21,7 @@ public class entrance {
 	*/
 	
 	public static void main(String[] args, ClientObject client) {
-		sprint3.Client = client;
+		sprint3.c = client;
 		sprint3.main(args);
 	}
 }

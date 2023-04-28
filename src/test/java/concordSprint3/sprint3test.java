@@ -112,10 +112,12 @@ class sprint3test extends sprint3{
 		robot.write("demo");
 		Assertions.assertThat(robot.lookup("#nameBox").queryAs(TextField.class)).hasText("demo");
 		
+		//enter password
 		robot.clickOn("#passwordBox");
 		robot.write("demo");
 		Assertions.assertThat(robot.lookup("#passwordBox").queryAs(TextField.class)).hasText("demo");
 		
+		//register
 		robot.clickOn("#Reg");
 		
 		
@@ -196,6 +198,8 @@ class sprint3test extends sprint3{
 		robot.clickOn("#chnBox0");
 		
 		//test channel scroll
+		
+		//add a bunch of channels
 		robot.rightClickOn("#chnMain");
 		robot.clickOn("#chnContext6");
 		robot.rightClickOn("#chnMain");
@@ -215,6 +219,7 @@ class sprint3test extends sprint3{
 		robot.rightClickOn("#chnMain");
 		robot.clickOn("#chnContext6");
 		
+		//make sure their scrolling
 		robot.moveTo("#chnBox0");
 		robot.scroll(40, VerticalDirection.UP);
 		Assertions.assertThat(robot.lookup("#chnBox0").queryAs(Label.class)).hasText("New Chat");
@@ -223,6 +228,8 @@ class sprint3test extends sprint3{
 		
 		
 		//test group scroll
+		
+		//add a bunch of groups
 		robot.rightClickOn("#grpMain");
 		robot.clickOn("#MakeGroup");
 		robot.rightClickOn("#grpMain");
@@ -242,8 +249,7 @@ class sprint3test extends sprint3{
 		robot.rightClickOn("#grpMain");
 		robot.clickOn("#MakeGroup");
 		
-		//Thread.sleep(10000000L);
-		
+		//make sure it scrolls up and down
 		robot.moveTo("#grpBox1");
 		robot.scroll(40, VerticalDirection.UP);
 		Assertions.assertThat(robot.lookup("#grpBox0").queryAs(Label.class)).hasText("NewGroup");
@@ -256,6 +262,14 @@ class sprint3test extends sprint3{
 		Assertions.assertThat(robot.lookup("#chnBox0").queryAs(Label.class)).hasText("my channel");
 		robot.clickOn("#grpBox1");
 		Assertions.assertThat(robot.lookup("#chnBox0").queryAs(Label.class)).hasText("");
+		
+		//delete a channel
+		robot.clickOn("#grpBox0");
+		Assertions.assertThat(robot.lookup("#chnBox0").queryAs(Label.class)).hasText("my channel");
+		robot.clickOn("#chnBox0");
+		robot.rightClickOn("#serverChannelLabel");
+		robot.clickOn("#delChn");
+		Assertions.assertThat(robot.lookup("#chnBox0").queryAs(Label.class)).hasText("New Chat");
 		
 		//delete a group
 		robot.clickOn("#grpBox0");
@@ -278,8 +292,6 @@ class sprint3test extends sprint3{
 			robot.press(KeyCode.BACK_SPACE);
 			robot.release(KeyCode.BACK_SPACE);
 		}
-
-		
 		robot.write("demo");
 		Assertions.assertThat(robot.lookup("#nameBox").queryAs(TextField.class)).hasText("demo");
 		robot.clickOn("#passwordBox");
@@ -288,9 +300,6 @@ class sprint3test extends sprint3{
 			robot.press(KeyCode.BACK_SPACE);
 			robot.release(KeyCode.BACK_SPACE);
 		}
-
-
-		
 		robot.write("demo");
 		Assertions.assertThat(robot.lookup("#passwordBox").queryAs(TextField.class)).hasText("demo");
 		robot.clickOn("#Reg");
@@ -304,9 +313,6 @@ class sprint3test extends sprint3{
 			robot.press(KeyCode.BACK_SPACE);
 			robot.release(KeyCode.BACK_SPACE);
 		}
-
-
-		
 		robot.write("demo");
 		Assertions.assertThat(robot.lookup("#nameBox").queryAs(TextField.class)).hasText("demo");
 		robot.clickOn("#passwordBox");
@@ -315,50 +321,35 @@ class sprint3test extends sprint3{
 			robot.press(KeyCode.BACK_SPACE);
 			robot.release(KeyCode.BACK_SPACE);
 		}
-
-
-		
 		robot.write("notdemo");
 		Assertions.assertThat(robot.lookup("#passwordBox").queryAs(TextField.class)).hasText("notdemo");
 		robot.clickOn("#Login");
 		Assertions.assertThat(robot.lookup("#nameBox").queryAs(TextField.class)).hasText("Could not log in");
 		Assertions.assertThat(robot.lookup("#passwordBox").queryAs(TextField.class)).hasText("Could not log in");
 		
-		
-		
-		
+
 		//login
 		robot.clickOn("#nameBox");
-		
 		for(int i = 0; i < 20; i++) {
 			robot.press(KeyCode.BACK_SPACE);
 			robot.release(KeyCode.BACK_SPACE);
 		}
-
-		
 		robot.write("demo");
 		Assertions.assertThat(robot.lookup("#nameBox").queryAs(TextField.class)).hasText("demo");
 		robot.clickOn("#passwordBox");
-		
 		for(int i = 0; i < 20; i++) {
 			robot.press(KeyCode.BACK_SPACE);
 			robot.release(KeyCode.BACK_SPACE);
 		}
-
-		
 		robot.write("demo");
 		Assertions.assertThat(robot.lookup("#passwordBox").queryAs(TextField.class)).hasText("demo");
 		robot.clickOn("#Login");
 		
 		
-		
-		
-		//get userid
+		//get userid, so we can add them to a group later
 		robot.rightClickOn("#grpMain");
 		robot.clickOn("#SeeUserID");
 		Assertions.assertThat(robot.lookup("#msgField").queryAs(TextField.class)).hasText("0");
-		Thread.sleep(100L);
-		
 		
 		
 		//logout
@@ -385,13 +376,12 @@ class sprint3test extends sprint3{
 		
 		robot.clickOn("#Reg");
 		
-		//make a group invite our other account
+		
+		//make a group named invited, and invite our other account
 		robot.rightClickOn("#grpMain");
 		robot.clickOn("#MakeGroup");
-		
-		
+
 		robot.clickOn("#grpBox0");
-		
 		
 		robot.clickOn("#msgField");
 		for(int i = 0; i < 1; i++) {
@@ -413,11 +403,12 @@ class sprint3test extends sprint3{
 		robot.clickOn("#chnContext1");
 		robot.clickOn("#chnBox0");
 		
+		//make sure they joined
 		Assertions.assertThat(robot.lookup("#msgBox0").queryAs(Label.class)).hasText("0 has joined the group");
 		
 		
 		
-		//give admin
+		//give admin, to test roles on other users
 		robot.rightClickOn("#chnMain");
 		robot.clickOn("#chnContext2");
 		robot.clickOn("#msgField");
@@ -462,13 +453,14 @@ class sprint3test extends sprint3{
 		Assertions.assertThat(robot.lookup("#passwordBox").queryAs(TextField.class)).hasText("demo");
 		robot.clickOn("#Login");
 		
-
+		//check that the channels are in there
 		robot.moveTo("#grpBox1");                                                                
 		robot.scroll(40, VerticalDirection.UP);                                                  
 		Assertions.assertThat(robot.lookup("#grpBox7").queryAs(Label.class)).hasText("invited");
 		robot.clickOn("#grpBox7");
 		robot.clickOn("#chnBox0");
 		
+		//and that the channels have text
 		Assertions.assertThat(robot.lookup("#msgBox0").queryAs(Label.class)).hasText("0 has joined the group");
 		
 		
