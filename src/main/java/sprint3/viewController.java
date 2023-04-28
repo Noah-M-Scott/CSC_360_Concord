@@ -24,7 +24,7 @@ public class viewController {
     Label msgBox0, msgBox1, msgBox2, msgBox3, msgBox4, msgBox5, msgBox6,
     chnBox7, chnBox6, chnBox5, chnBox4, chnBox3, chnBox2, chnBox1, chnBox0, 
     grpBox7, grpBox6, grpBox5, grpBox4, grpBox3, grpBox2, grpBox1, grpBox0,
-    channelLabel, grpLabel;
+    channelLabel, grpLabel, grpMain;
     
     //the text field id
     @FXML
@@ -32,6 +32,8 @@ public class viewController {
     
     @FXML
     ContextMenu msgContext;
+    
+    sprint3 callback;
     
     //all the many context menu ids
     @FXML
@@ -145,8 +147,7 @@ public class viewController {
     
     @FXML
     void logOut() {
-    	Stage stage = (Stage) msgField.getScene().getWindow();
-        stage.close();
+    	callback.backScene();
     }
     
     //these all stubs, implement however
@@ -284,7 +285,8 @@ public class viewController {
     }
     
     //init stuff
-	public void setModel(model vm) {
+	public void setModel(model vm, sprint3 callback) {
+		this.callback = callback;
 		theModel = vm;
 		theModel.setMsgWindow(7);
 		theModel.setChnWindow(8);
@@ -304,6 +306,7 @@ public class viewController {
     		grpLabel.setVisible(false);
 		else
 			grpLabel.setVisible(true);
+		grpMain.setText(theModel.Client.CurrentUser.DisplayName);
 	}
 	
 }

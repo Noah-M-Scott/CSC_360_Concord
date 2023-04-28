@@ -2,6 +2,7 @@ package sprint3;
 
 import java.rmi.RemoteException;
 
+import ConcordData.GroupData;
 import ConcordData.UserData;
 import concordSprint2.ClientObject;
 import javafx.event.ActionEvent;
@@ -41,7 +42,9 @@ public class loginController {
 	@FXML
     void login(ActionEvent event) throws RemoteException {
 		if( Client.login(nameBox.getText(), passwordBox.getText()).equals("ok") ) {
+			theModel.currentUser = Client.CurrentUser;
 			callback.nextScene();
+			theModel.init(Client);
 			return;
 		}
 		
@@ -55,8 +58,9 @@ public class loginController {
 		temp.DisplayName = nameBox.getText();
 		temp.Password = passwordBox.getText();
 		if( Client.addUser(temp).equals("ok") ) {
-			theModel.currentUser = temp;
+			theModel.currentUser = Client.CurrentUser;
 			callback.nextScene();
+			theModel.init(Client);
 			return;
 		}
 		

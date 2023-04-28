@@ -100,7 +100,10 @@ public class GroupData {
 	}
 
 	public GroupUserData findGroupUserById(long GroupUserId){
-		return Users.get((int) GroupUserId);
+		for(int i = 0; i < Users.size(); i++)
+			if(Users.get(i).UserId == GroupUserId)
+				return Users.get(i);
+		return null;
 	}
 
 }

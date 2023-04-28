@@ -1,4 +1,5 @@
 package sprint3;
+import ConcordData.UserData;
 import concordSprint2.ClientObject;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +10,7 @@ import javafx.stage.Stage;
 
 public class sprint3 extends Application {
 
-	Scene sc;
+	Scene sc, mc;
 	Stage mainStage;
 	public static ClientObject Client;
 	
@@ -33,16 +34,22 @@ public class sprint3 extends Application {
 		
 		
 		model vm = new model();
-		cont.setModel(vm);
+		cont.setModel(vm, this);
 		vm.init(Client);
 		
 		lcont.init(this, Client, vm);
 		
 		sc = new Scene(view);
-		Scene ls = new Scene(LoginView);
+		mc = new Scene(LoginView);
 		
-		stage.setScene(ls);
+		stage.setScene(mc);
 		stage.show();
+	}
+	
+	public void backScene() {
+		Client.CurrentUser = new UserData();
+		mainStage.setScene(mc);
+		mainStage.show();
 	}
 	
 	public void nextScene() {

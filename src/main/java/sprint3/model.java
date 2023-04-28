@@ -43,6 +43,11 @@ public class model {
 		Client = in;
 		currentUser = Client.CurrentUser;
 		currentGroup = Client.CurrentGroup;
+		currentChannel = new ChatListing();
+		chnIndex = 0;
+		userGroupIndex = 0;
+		grpIndex = 0;
+		msgIndex = 0;
 		//here you init all the current data
 	}
 	
@@ -333,8 +338,10 @@ public class model {
     		return;
     	
     	selectChannel(0);
-    	makeMsg(userId + " has joined the group");
-    	
+    	MsgData newMsg = new MsgData();
+  		newMsg.deleted = false;
+  		newMsg.Text = userId + " has joined the group";
+  		Client.sendMsg(currentUser.UserId, currentGroup.GroupId, currentChannel.ChatId, newMsg);
     }
     
     
@@ -350,7 +357,7 @@ public class model {
 			return;
 		}
 		
-		currentChannel = currentGroup.Chats.get(grpIndex + offset);
+		currentChannel = currentGroup.Chats.get(chnIndex + offset);
 		msgIndex = 0;
 	}
 	

@@ -23,14 +23,9 @@ public class Sprint2Test {
 	public
 	void test() throws Exception {
 		
-		//test last sprint
-		CondcordTest sprint1Test = new CondcordTest();
-		sprint1Test.setUp();
-		sprint1Test.test();
-		
 		//new server and client
 		s = new ServerObject();
-		registry = LocateRegistry.createRegistry(2099);
+		registry = LocateRegistry.createRegistry(2082);
 		registry.rebind("concord-s", s);
 		c = new ClientObject(registry);
 		

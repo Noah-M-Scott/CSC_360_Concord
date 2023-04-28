@@ -25,6 +25,8 @@ import javafx.geometry.HorizontalDirection;
 import javafx.geometry.VerticalDirection;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import sprint3.entrance;
@@ -39,19 +41,18 @@ class sprint3test extends sprint3{
 	ServerObject s;
 	ClientObject c;
 	Registry registry;
+	loginController lcont;
+	viewController cont;
+	model vm; 
 	
-	Scene sc;
+	Scene sc, mc;
 	Stage mainStage;
 	
 	@Start
 	public void start(Stage stage) throws Exception {
 		
-		//test last sprint and sprint1
-		Sprint2Test sprint2Test = new Sprint2Test();
-		sprint2Test.test();
-		
 		s = new ServerObject();
-		registry = LocateRegistry.createRegistry(2092);
+		registry = LocateRegistry.createRegistry(2084);
 		registry.rebind("concord-s", s);
 		c = new ClientObject(registry);
 		
@@ -68,27 +69,37 @@ class sprint3test extends sprint3{
 		BorderPane LoginView = Loginloader.load();
 		BorderPane view = loader.load();
 		
-		loginController lcont = Loginloader.getController();
-		viewController cont = loader.getController();
+		lcont = Loginloader.getController();
+		cont = loader.getController();
 		
-		
-		
-		
-		model vm = new model();
-		cont.setModel(vm);
+		vm = new model();
 		vm.init(c);
+		cont.setModel(vm, this);
+		
 		
 		lcont.init(this, c, vm);
 		
 		sc = new Scene(view);
-		Scene ls = new Scene(LoginView);
+		mc = new Scene(LoginView);
 		
-		stage.setScene(ls);
+		stage.setScene(mc);
 		stage.show();
 	}
 	
+	public void backScene() {
+		c = new ClientObject(registry);
+		vm = new model();
+		
+		vm.init(c);
+		lcont.init(this, c, vm);
+		mainStage.setScene(mc);
+		mainStage.show();
+	}
+	
+	
 	public void nextScene() {
 		mainStage.setScene(sc);
+		cont.setModel(vm, this);
 		mainStage.show();
 	}
 	
@@ -96,43 +107,51 @@ class sprint3test extends sprint3{
 	public void test(FxRobot robot) throws Exception, InterruptedException{
 
 		
-
+		//register
 		robot.clickOn("#nameBox");
 		robot.write("demo");
+		Assertions.assertThat(robot.lookup("#nameBox").queryAs(TextField.class)).hasText("demo");
 		
 		robot.clickOn("#passwordBox");
 		robot.write("demo");
+		Assertions.assertThat(robot.lookup("#passwordBox").queryAs(TextField.class)).hasText("demo");
 		
 		robot.clickOn("#Reg");
+		
 		
 		//make and rename group
 		robot.rightClickOn("#grpMain");
 		robot.clickOn("#MakeGroup");
 		robot.clickOn("#msgField");
 		robot.write("my group");
+		Assertions.assertThat(robot.lookup("#msgField").queryAs(TextField.class)).hasText("my group");
 		robot.rightClickOn("#grpBox0");
 		robot.clickOn("#grpBoxContext");
 		robot.clickOn("#grpBox0");
-		
+		Assertions.assertThat(robot.lookup("#grpBox0").queryAs(Label.class)).hasText("my group");
 		
 		//make and rename channel
 		robot.rightClickOn("#chnMain");
 		robot.clickOn("#chnContext6");
+		Assertions.assertThat(robot.lookup("#chnBox0").queryAs(Label.class)).hasText("New Chat");
 		robot.clickOn("#msgField");
 		robot.write("my channel");
 		robot.rightClickOn("#chnBox0");
 		robot.clickOn("#chnBoxContext0");
 		robot.clickOn("#chnBox0");
+		Assertions.assertThat(robot.lookup("#chnBox0").queryAs(Label.class)).hasText("my channel");
 		
 		//send a message, quote it, delete it
 		robot.clickOn("#msgField");
 		robot.write("hello world");
 		robot.clickOn("#sendButton");
+		Assertions.assertThat(robot.lookup("#msgBox0").queryAs(Label.class)).hasText("demo: hello world");
 		robot.rightClickOn("#msgBox0");
 		robot.clickOn("#msgContext0r");
-		Thread.sleep(100L);
+		Assertions.assertThat(robot.lookup("#msgBox0").queryAs(Label.class)).hasText("demo: \" demo: hello world \"");
 		robot.rightClickOn("#msgBox0");
 		robot.clickOn("#msgContext0d");
+		Assertions.assertThat(robot.lookup("#msgBox0").queryAs(Label.class)).hasText("deleted");
 		
 		
 		//check roles
@@ -140,26 +159,26 @@ class sprint3test extends sprint3{
 		robot.clickOn("#chnContext2");
 		robot.moveTo("#msgBox0");
 		robot.scroll(40, VerticalDirection.UP);
-		Thread.sleep(1000L);
+		Assertions.assertThat(robot.lookup("#msgBox6").queryAs(Label.class)).hasText("How to make a role:");
 		robot.scroll(40, VerticalDirection.DOWN);
 		
 		//make a role
 		robot.clickOn("#msgField");
 		robot.write("newrole:c");
 		robot.clickOn("#sendButton");
+		Assertions.assertThat(robot.lookup("#msgBox0").queryAs(Label.class)).hasText("}");
 		
 		//give its self the role
 		robot.clickOn("#msgField");
 		robot.write(">demo:newrole");
 		robot.clickOn("#sendButton");
-		Thread.sleep(1000L);
+		Assertions.assertThat(robot.lookup("#msgBox0").queryAs(Label.class)).hasText("demo has newrole");
 		
 		//give take it away
 		robot.clickOn("#msgField");
 		robot.write("<demo:newrole");
 		robot.clickOn("#sendButton");
-		Thread.sleep(1000L);
-		
+		Assertions.assertThat(robot.lookup("#msgBox0").queryAs(Label.class)).hasText("}");
 		
 		
 		//make and rename and delete a  channel
@@ -170,22 +189,292 @@ class sprint3test extends sprint3{
 		robot.rightClickOn("#chnBox1");
 		robot.clickOn("#chnBoxContext1");
 		robot.clickOn("#chnBox1");
+		Assertions.assertThat(robot.lookup("#serverChannelLabel").queryAs(Label.class)).hasText("tb deleted");
 		robot.rightClickOn("#serverChannelLabel");
 		robot.clickOn("#delChn");
-		
-		
+		Assertions.assertThat(robot.lookup("#chnBox1").queryAs(Label.class)).hasText("");
 		robot.clickOn("#chnBox0");
 		
+		//test channel scroll
+		robot.rightClickOn("#chnMain");
+		robot.clickOn("#chnContext6");
+		robot.rightClickOn("#chnMain");
+		robot.clickOn("#chnContext6");
+		robot.rightClickOn("#chnMain");
+		robot.clickOn("#chnContext6");
+		robot.rightClickOn("#chnMain");
+		robot.clickOn("#chnContext6");
+		robot.rightClickOn("#chnMain");
+		robot.clickOn("#chnContext6");
+		robot.rightClickOn("#chnMain");
+		robot.clickOn("#chnContext6");
+		robot.rightClickOn("#chnMain");
+		robot.clickOn("#chnContext6");
+		robot.rightClickOn("#chnMain");
+		robot.clickOn("#chnContext6");
+		robot.rightClickOn("#chnMain");
+		robot.clickOn("#chnContext6");
+		
+		robot.moveTo("#chnBox0");
+		robot.scroll(40, VerticalDirection.UP);
+		Assertions.assertThat(robot.lookup("#chnBox0").queryAs(Label.class)).hasText("New Chat");
+		robot.scroll(40, VerticalDirection.DOWN);
+		Assertions.assertThat(robot.lookup("#chnBox0").queryAs(Label.class)).hasText("my channel");
 		
 		
-		Thread.sleep(1000L);
+		//test group scroll
+		robot.rightClickOn("#grpMain");
+		robot.clickOn("#MakeGroup");
+		robot.rightClickOn("#grpMain");
+		robot.clickOn("#MakeGroup");
+		robot.rightClickOn("#grpMain");
+		robot.clickOn("#MakeGroup");
+		robot.rightClickOn("#grpMain");
+		robot.clickOn("#MakeGroup");
+		robot.rightClickOn("#grpMain");
+		robot.clickOn("#MakeGroup");
+		robot.rightClickOn("#grpMain");
+		robot.clickOn("#MakeGroup");
+		robot.rightClickOn("#grpMain");
+		robot.clickOn("#MakeGroup");
+		robot.rightClickOn("#grpMain");
+		robot.clickOn("#MakeGroup");
+		robot.rightClickOn("#grpMain");
+		robot.clickOn("#MakeGroup");
+		
+		//Thread.sleep(10000000L);
+		
+		robot.moveTo("#grpBox1");
+		robot.scroll(40, VerticalDirection.UP);
+		Assertions.assertThat(robot.lookup("#grpBox0").queryAs(Label.class)).hasText("NewGroup");
+		robot.moveTo("#grpBox2");
+		robot.scroll(40, VerticalDirection.DOWN);
+		Assertions.assertThat(robot.lookup("#grpBox0").queryAs(Label.class)).hasText("my group");
+		
+		//check that chats are only shown in the correct group
+		robot.clickOn("#grpBox0");
+		Assertions.assertThat(robot.lookup("#chnBox0").queryAs(Label.class)).hasText("my channel");
+		robot.clickOn("#grpBox1");
+		Assertions.assertThat(robot.lookup("#chnBox0").queryAs(Label.class)).hasText("");
+		
+		//delete a group
+		robot.clickOn("#grpBox0");
+		robot.rightClickOn("#chnMain");
+		robot.clickOn("#chnContext5");
+		Assertions.assertThat(robot.lookup("#grpBox0").queryAs(Label.class)).hasText("NewGroup");
+	
 		
 		//logout
 		robot.rightClickOn("#grpMain");
 		robot.clickOn("#LogOut");
 		
 		
-		//Assertions.assertThat(robot.lookup("#numberLabel").queryAs(Label.class)).hasText(number);
+		
+		//fail to register (name taken)
+		robot.clickOn("#nameBox");
+		
+		//this is how you can clear a text box
+		for(int i = 0; i < 20; i++) {
+			robot.press(KeyCode.BACK_SPACE);
+			robot.release(KeyCode.BACK_SPACE);
+		}
+
+		
+		robot.write("demo");
+		Assertions.assertThat(robot.lookup("#nameBox").queryAs(TextField.class)).hasText("demo");
+		robot.clickOn("#passwordBox");
+		
+		for(int i = 0; i < 20; i++) {
+			robot.press(KeyCode.BACK_SPACE);
+			robot.release(KeyCode.BACK_SPACE);
+		}
+
+
+		
+		robot.write("demo");
+		Assertions.assertThat(robot.lookup("#passwordBox").queryAs(TextField.class)).hasText("demo");
+		robot.clickOn("#Reg");
+		Assertions.assertThat(robot.lookup("#nameBox").queryAs(TextField.class)).hasText("Name Taken");
+		Assertions.assertThat(robot.lookup("#passwordBox").queryAs(TextField.class)).hasText("Name Taken");
+		
+		
+		//fail to login
+		robot.clickOn("#nameBox");
+		for(int i = 0; i < 20; i++) {
+			robot.press(KeyCode.BACK_SPACE);
+			robot.release(KeyCode.BACK_SPACE);
+		}
+
+
+		
+		robot.write("demo");
+		Assertions.assertThat(robot.lookup("#nameBox").queryAs(TextField.class)).hasText("demo");
+		robot.clickOn("#passwordBox");
+		
+		for(int i = 0; i < 20; i++) {
+			robot.press(KeyCode.BACK_SPACE);
+			robot.release(KeyCode.BACK_SPACE);
+		}
+
+
+		
+		robot.write("notdemo");
+		Assertions.assertThat(robot.lookup("#passwordBox").queryAs(TextField.class)).hasText("notdemo");
+		robot.clickOn("#Login");
+		Assertions.assertThat(robot.lookup("#nameBox").queryAs(TextField.class)).hasText("Could not log in");
+		Assertions.assertThat(robot.lookup("#passwordBox").queryAs(TextField.class)).hasText("Could not log in");
+		
+		
+		
+		
+		//login
+		robot.clickOn("#nameBox");
+		
+		for(int i = 0; i < 20; i++) {
+			robot.press(KeyCode.BACK_SPACE);
+			robot.release(KeyCode.BACK_SPACE);
+		}
+
+		
+		robot.write("demo");
+		Assertions.assertThat(robot.lookup("#nameBox").queryAs(TextField.class)).hasText("demo");
+		robot.clickOn("#passwordBox");
+		
+		for(int i = 0; i < 20; i++) {
+			robot.press(KeyCode.BACK_SPACE);
+			robot.release(KeyCode.BACK_SPACE);
+		}
+
+		
+		robot.write("demo");
+		Assertions.assertThat(robot.lookup("#passwordBox").queryAs(TextField.class)).hasText("demo");
+		robot.clickOn("#Login");
+		
+		
+		
+		
+		//get userid
+		robot.rightClickOn("#grpMain");
+		robot.clickOn("#SeeUserID");
+		Assertions.assertThat(robot.lookup("#msgField").queryAs(TextField.class)).hasText("0");
+		Thread.sleep(100L);
+		
+		
+		
+		//logout
+		robot.rightClickOn("#grpMain");
+		robot.clickOn("#LogOut");
+		
+		
+		//register as a new user
+		robot.clickOn("#nameBox");
+		for(int i = 0; i < 20; i++) {
+			robot.press(KeyCode.BACK_SPACE);
+			robot.release(KeyCode.BACK_SPACE);
+		}
+		robot.write("newdemo");
+		Assertions.assertThat(robot.lookup("#nameBox").queryAs(TextField.class)).hasText("newdemo");
+		
+		robot.clickOn("#passwordBox");
+		for(int i = 0; i < 20; i++) {
+			robot.press(KeyCode.BACK_SPACE);
+			robot.release(KeyCode.BACK_SPACE);
+		}
+		robot.write("newdemo");
+		Assertions.assertThat(robot.lookup("#passwordBox").queryAs(TextField.class)).hasText("newdemo");
+		
+		robot.clickOn("#Reg");
+		
+		//make a group invite our other account
+		robot.rightClickOn("#grpMain");
+		robot.clickOn("#MakeGroup");
+		
+		
+		robot.clickOn("#grpBox0");
+		
+		
+		robot.clickOn("#msgField");
+		for(int i = 0; i < 1; i++) {
+			robot.press(KeyCode.BACK_SPACE);
+			robot.release(KeyCode.BACK_SPACE);
+		}
+		robot.write("invited");
+		Assertions.assertThat(robot.lookup("#msgField").queryAs(TextField.class)).hasText("invited");
+		robot.rightClickOn("#grpBox0");
+		robot.clickOn("#grpBoxContext");
+		robot.clickOn("#grpBox0");
+		
+		robot.rightClickOn("#chnMain");
+		robot.clickOn("#chnContext6");
+		robot.clickOn("#chnBox0");
+		
+		robot.write("0");
+		robot.rightClickOn("#chnMain");
+		robot.clickOn("#chnContext1");
+		robot.clickOn("#chnBox0");
+		
+		Assertions.assertThat(robot.lookup("#msgBox0").queryAs(Label.class)).hasText("0 has joined the group");
+		
+		
+		
+		//give admin
+		robot.rightClickOn("#chnMain");
+		robot.clickOn("#chnContext2");
+		robot.clickOn("#msgField");
+		
+		for(int i = 0; i < 20; i++) {
+			robot.press(KeyCode.BACK_SPACE);
+			robot.release(KeyCode.BACK_SPACE);
+		}
+		
+		robot.write(">demo:admin");
+		robot.clickOn("#sendButton");
+		Assertions.assertThat(robot.lookup("#msgBox0").queryAs(Label.class)).hasText("demo has admin");
+		
+		
+		//logout
+		robot.rightClickOn("#grpMain");
+		robot.clickOn("#LogOut");
+		
+		
+		
+		
+		//make sure we're now in the new group we where invited to
+		robot.clickOn("#nameBox");
+		
+		for(int i = 0; i < 20; i++) {
+			robot.press(KeyCode.BACK_SPACE);
+			robot.release(KeyCode.BACK_SPACE);
+		}
+
+		
+		robot.write("demo");
+		Assertions.assertThat(robot.lookup("#nameBox").queryAs(TextField.class)).hasText("demo");
+		robot.clickOn("#passwordBox");
+		
+		for(int i = 0; i < 20; i++) {
+			robot.press(KeyCode.BACK_SPACE);
+			robot.release(KeyCode.BACK_SPACE);
+		}
+
+		
+		robot.write("demo");
+		Assertions.assertThat(robot.lookup("#passwordBox").queryAs(TextField.class)).hasText("demo");
+		robot.clickOn("#Login");
+		
+
+		robot.moveTo("#grpBox1");                                                                
+		robot.scroll(40, VerticalDirection.UP);                                                  
+		Assertions.assertThat(robot.lookup("#grpBox7").queryAs(Label.class)).hasText("invited");
+		robot.clickOn("#grpBox7");
+		robot.clickOn("#chnBox0");
+		
+		Assertions.assertThat(robot.lookup("#msgBox0").queryAs(Label.class)).hasText("0 has joined the group");
+		
+		
+		Thread.sleep(1000L);
+		
+		
 	}
 
 }

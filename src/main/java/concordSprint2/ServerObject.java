@@ -148,6 +148,7 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 				return null;
 			
 			GroupDataRepository.findGroupById(GroupId).addUser(newUser);
+			newUser.JoinedGroupIds.add(GroupId);
 			return GroupDataRepository.findGroupById(GroupId);
 		} else
 			return null;
