@@ -10,75 +10,75 @@
    <long>3</long>
   </void>
  </object>
-<void class="ConcordData.UserData" method="getField">
- <string>UserId</string>
- <void method="set">
+<void class="ConcordData.UserData" id="Field0" method="getField">
+ <string>JoinedGroupIds</string>
+ <void id="ArrayList0" method="get">
   <object class="ConcordData.UserData" id="UserData0">
+   <void class="ConcordData.UserData" method="getField">
+    <string>UserId</string>
+    <void method="set">
+     <object idref="UserData0"/>
+     <long>1</long>
+    </void>
+   </void>
    <void class="ConcordData.UserData" method="getField">
     <string>DisplayName</string>
     <void method="set">
      <object idref="UserData0"/>
-     <string>demospy</string>
+     <string>demo2</string>
     </void>
    </void>
    <void class="ConcordData.UserData" method="getField">
     <string>Password</string>
     <void method="set">
      <object idref="UserData0"/>
-     <string>demo</string>
+     <string>demo2</string>
     </void>
    </void>
   </object>
-  <long>2</long>
- </void>
-</void>
-<void class="ConcordData.UserDataRepo" id="Field0" method="getField">
- <string>Users</string>
- <void id="HashMap0" method="get">
-  <object idref="UserDataRepo0"/>
-  <void method="put">
-   <long>2</long>
-   <object idref="UserData0"/>
-  </void>
-  <void method="put">
-   <long>1</long>
-   <object class="ConcordData.UserData" id="UserData1">
-    <void class="ConcordData.UserData" method="getField">
-     <string>UserId</string>
-     <void method="set">
-      <object idref="UserData1"/>
-      <long>1</long>
-     </void>
-    </void>
-    <void class="ConcordData.UserData" method="getField">
-     <string>DisplayName</string>
-     <void method="set">
-      <object idref="UserData1"/>
-      <string>demo2</string>
-     </void>
-    </void>
-    <void class="ConcordData.UserData" method="getField">
-     <string>Password</string>
-     <void method="set">
-      <object idref="UserData1"/>
-      <string>demo2</string>
-     </void>
-    </void>
-   </object>
-  </void>
- </void>
-</void>
-<void idref="HashMap0"/>
-<void class="ConcordData.UserData" id="Field1" method="getField">
- <string>JoinedGroupIds</string>
- <void id="ArrayList0" method="get">
-  <object idref="UserData1"/>
   <void method="add">
    <long>0</long>
   </void>
  </void>
 </void>
 <void idref="ArrayList0"/>
+<void class="ConcordData.UserDataRepo" id="Field1" method="getField">
+ <string>Users</string>
+ <void id="HashMap0" method="get">
+  <object idref="UserDataRepo0"/>
+  <void method="put">
+   <long>2</long>
+   <object class="ConcordData.UserData" id="UserData1">
+    <void class="ConcordData.UserData" method="getField">
+     <string>UserId</string>
+     <void method="set">
+      <object idref="UserData1"/>
+      <long>2</long>
+     </void>
+    </void>
+    <void class="ConcordData.UserData" method="getField">
+     <string>DisplayName</string>
+     <void method="set">
+      <object idref="UserData1"/>
+      <string>demospy</string>
+     </void>
+    </void>
+    <void class="ConcordData.UserData" method="getField">
+     <string>Password</string>
+     <void method="set">
+      <object idref="UserData1"/>
+      <string>demo</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <long>1</long>
+   <object idref="UserData0"/>
+  </void>
+ </void>
+</void>
+<void idref="HashMap0"/>
 <void class="ConcordData.UserDataRepo" id="Field2" method="getField">
  <string>Names</string>
  <void id="HashMap1" method="get">

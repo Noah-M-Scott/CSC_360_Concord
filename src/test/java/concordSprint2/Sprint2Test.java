@@ -24,7 +24,7 @@ public class Sprint2Test {
 	void test() throws Exception {
 		
 		//new server and client
-		s = new ServerObject();
+		s = new ServerObject("test.xml");
 		registry = LocateRegistry.createRegistry(2082);
 		registry.rebind("concord-s", s);
 		c = new ClientObject(registry);
@@ -56,6 +56,7 @@ public class Sprint2Test {
 		admin.Perms.add(new Pair<String, Boolean>("delete role", true));
 		admin.Perms.add(new Pair<String, Boolean>("delete msg", true));
 		admin.Perms.add(new Pair<String, Boolean>("delete group", true));
+		admin.Perms.add(new Pair<String, Boolean>("edit checks", true));
 		demoGroup.Roles.add(admin);
 		demoGroup.findGroupUserById(c.CurrentUser.UserId).Roles.add(admin);
 		assertEquals(c.makeGroup(c.CurrentUser.UserId, demoGroup), "ok");
@@ -77,6 +78,20 @@ public class Sprint2Test {
 		demoMsg.deleted = false;
 		demoMsg.Text = "demo";
 		assertEquals(c.sendMsg(c.CurrentUser.UserId, c.CurrentGroup.GroupId, 0, demoMsg), "ok");
+		
+		
+		//SPRINT 4---------------------------------------------------------------------------------------------
+		assertEquals(c.addACheck(c.CurrentUser.UserId, c.CurrentGroup.GroupId, "AutoCensor"), "ok");
+		
+		//new bad msg
+		demoMsg = new MsgData();
+		demoMsg.deleted = false;
+		demoMsg.Text = "bug";
+		assertEquals(c.sendMsg(c.CurrentUser.UserId, c.CurrentGroup.GroupId, 0, demoMsg), "ok");
+		assertEquals(c.CurrentGroup.Chats.get(0).Chat.get(1).Text, "[redacted]");
+		//-----------------------------------------------------------------------------------------------------
+		
+		
 		
 		//new role
 		Role demoRole = new Role();
@@ -141,10 +156,10 @@ public class Sprint2Test {
 		c.alertStatus(c.CurrentUser.UserId, 0);
 		
 		//save server to disk
-		s.saveToDisk("test.xml");
+		s.saveToDisk();
 		
 		//restore from disk
-		ServerObject s2 = new ServerObject();
+		ServerObject s2 = new ServerObject("test.xml");
 		
 		//assert there are groups
 		s2.loadFromDisk("test.xml");
@@ -159,7 +174,7 @@ public class Sprint2Test {
 		assertEquals(s2.GroupDataRepository.Groups.get(c.CurrentGroup.GroupId).Chats.get(0).ChatName, "demoListing");
 		
 		//assert there is a message "demo" in demoListing in demo
-		assertEquals(s2.GroupDataRepository.Groups.get(c.CurrentGroup.GroupId).Chats.get(0).Chat.get(0).Text, "demo");
+		assertEquals(s2.GroupDataRepository.Groups.get(c.CurrentGroup.GroupId).Chats.get(0).Chat.get(1).Text, "demo");
 		
 		//delete msg and chat
 		assertEquals(c.deleteMsg(c.CurrentUser.UserId, c.CurrentGroup.GroupId, 0, 0), "ok");
@@ -172,7 +187,7 @@ public class Sprint2Test {
 		
 		
 		//save server to disk
-		s.saveToDisk("test.xml");
+		s.saveToDisk();
 		
 		//show there are now no groups
 		s2.loadFromDisk("test.xml");

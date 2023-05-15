@@ -5,11 +5,13 @@ import java.rmi.AccessException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
 
 import ConcordData.ChatListing;
 import ConcordData.GroupData;
 import ConcordData.MsgData;
 import ConcordData.Role;
+import ConcordData.TextCheck;
 import ConcordData.UserData;
 
 public class ClientObject implements ClientInterface, Serializable {
@@ -20,6 +22,8 @@ public class ClientObject implements ClientInterface, Serializable {
 	public UserData CurrentUser;
 	public serverInterface ServerProxy;
 	Registry registry;
+	
+	public String[] AvailibleCheckNames = {"AutoExpand", "AutoCensor"};
 	
 	public ClientObject(Registry in){
 		registry = in;
@@ -53,6 +57,35 @@ public class ClientObject implements ClientInterface, Serializable {
 		}
 		return "ok";
 	}
+	
+	public String addACheck(long UserId, long GroupId, String CheckName) throws RemoteException {
+		try {
+			GroupData temp = ServerProxy.addACheck(UserId, GroupId, CheckName);
+			if(temp == null)
+				return "Failed to add check"; 
+			else
+				CurrentGroup = temp;
+		} catch (RemoteException e) {                                    
+			// TODO Auto-generated catch block                           
+			e.printStackTrace();                                         
+		}
+		return "ok";
+	}
+	
+	public String takeACheck(long UserId, long GroupId, String CheckName) throws RemoteException {
+		try {
+			GroupData temp = ServerProxy.takeACheck(UserId, GroupId, CheckName);
+			if(temp == null)
+				return "Failed to take check";  
+			else
+				CurrentGroup = temp;
+		} catch (RemoteException e) {                                    
+			// TODO Auto-generated catch block                           
+			e.printStackTrace();                                         
+		}
+		return "ok";
+	}
+	
 	
 	public String getGroupData(long UserId, long GroupID){
 		try {             

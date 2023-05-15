@@ -25,6 +25,16 @@
             <TextField id="passwordBox" fx:id="passwordBox" />
             <Button id="Login" fx:id="Login" mnemonicParsing="false" onAction="#login" text="login" />
             <Button id="Reg" fx:id="Reg" mnemonicParsing="false" onAction="#register" text="register" />
+            <Label text="">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label text="[Concord]">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
          </children>
       </VBox>
    </center>

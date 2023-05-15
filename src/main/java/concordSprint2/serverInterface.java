@@ -24,4 +24,6 @@ public interface serverInterface extends Remote {
 	public GroupData giveTakeRole(long UserId, long GroupId, long TargetUser, String RoleName, boolean giveOrTake) throws RemoteException; 
 	public void alertStatus(long UserId, long Status) throws RemoteException;
 	public UserData login(String Name, String Password, ClientInterface client) throws RemoteException;
+	public GroupData addACheck(long UserId, long GroupId, String CheckName) throws RemoteException;
+	public GroupData takeACheck(long UserId, long GroupId, String CheckName) throws RemoteException;
 }

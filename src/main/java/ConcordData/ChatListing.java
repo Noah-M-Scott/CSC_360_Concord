@@ -6,8 +6,16 @@ public class ChatListing {
 	public long ChatId;
 	public ArrayList<MsgData> Chat = new ArrayList<MsgData>();
 	public String ChatName = "New Chat";
+	public ArrayList<TextCheck>	Check = new ArrayList<TextCheck>();
 	
-	
+	public ArrayList<TextCheck> getCheck() {
+		return Check;
+	}
+
+	public void setCheck(ArrayList<TextCheck> check) {
+		Check = check;
+	}
+
 	public long getChatId() {
 		return ChatId;
 	}
@@ -46,6 +54,9 @@ public class ChatListing {
 	}
 	
 	public long addMsg(MsgData in){
+		for(int i = 0; i < Check.size(); i++)
+			in.Text = Check.get(i).CheckString(in.UserId, in.Text);
+		
 		Chat.add(in);
 		Chat.get(Chat.size() - 1).MsgIndex = Chat.size() - 1;
 		return Chat.size() - 1;

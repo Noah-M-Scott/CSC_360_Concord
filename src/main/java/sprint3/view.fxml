@@ -21,7 +21,7 @@
                            <items>
                               <MenuItem id="MakeGroup" fx:id="grpContext0" mnemonicParsing="false" onAction="#makeGroup" text="Make Group" />
                               <MenuItem id="DeleteUser" fx:id="grpContext1" mnemonicParsing="false" onAction="#deleteUser" text="Delete User" />
-                              <MenuItem id="LogOut" fx:id="grpContext2" mnemonicParsing="false" onAction="#logOut" text="Log out and exit" />
+                              <MenuItem id="LogOut" fx:id="grpContext2" mnemonicParsing="false" onAction="#logOut" text="Log out" />
                               <MenuItem id="SeeUserID" fx:id="grpContext2" mnemonicParsing="false" onAction="#qUserId" text="See userId" />
                            </items>
                         </ContextMenu>
@@ -114,7 +114,7 @@
                             <MenuItem id="chnContext6" fx:id="chnContext6" mnemonicParsing="false" onAction="#makeChn" text="Add Channel" />      
                             <MenuItem id="chnContext1" fx:id="chnContext1" mnemonicParsing="false" onAction="#addUser" text="Add User" />      
                             <MenuItem id="chnContext2" fx:id="chnContext2" mnemonicParsing="false" onAction="#giveRole" text="view roles" />      
-                               
+                            <MenuItem id="chnContext4" fx:id="chnContext4" mnemonicParsing="false" onAction="#viewCheck" text="view Checks" />     
                             <MenuItem id="chnContext5" fx:id="chnContext5" mnemonicParsing="false" onAction="#deleteGrp" text="Delete Group" />  
                           </items>                                                                                             
                         </ContextMenu>                                                                                         
@@ -213,7 +213,7 @@
  						 </ContextMenu>                                                                                         
 					</contextMenu>  
 			</Label>
-            <VBox id="msgList" onScroll="#onMsgScroll" prefHeight="388.0" prefWidth="400.0">
+            <VBox id="msgList" fx:id="msgList" onScroll="#onMsgScroll" prefHeight="388.0" prefWidth="400.0">
                <children>
                   <Label id="msgBox6" fx:id="msgBox6" prefHeight="51.0" prefWidth="400.0" text="ex label">
                     <contextMenu>
@@ -280,7 +280,7 @@
                      </contextMenu></Label>
                </children>
             </VBox>
-            <HBox prefHeight="64.0" prefWidth="400.0">
+            <HBox fx:id="BoxBar" prefHeight="64.0" prefWidth="400.0">
                <children>
                   <Button id="plusButton" mnemonicParsing="false" onAction="#onPlus" text="+" />
                   <TextField id="msgField" fx:id="msgField" prefHeight="24.0" prefWidth="316.0" />
@@ -291,3 +291,4 @@
       </VBox>
    </center>
 </BorderPane>
+

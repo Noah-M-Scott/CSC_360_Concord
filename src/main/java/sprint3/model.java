@@ -70,6 +70,7 @@ public class model {
 		admin.Perms.add(new Pair<String, Boolean>("delete group", true));
 		admin.Perms.add(new Pair<String, Boolean>("rename chat", true));
 		admin.Perms.add(new Pair<String, Boolean>("rename group", true));
+		admin.Perms.add(new Pair<String, Boolean>("edit checks", true));
 		//admin.Perms.add(new Pair<String, Boolean>("kick user", true));
 		newGroup.Roles.add(admin);
 		newGroup.findGroupUserById(currentUser.UserId).Roles.add(admin);
@@ -126,72 +127,138 @@ public class model {
     	Client.deleteMsg(currentUser.UserId, currentGroup.GroupId, currentChannel.ChatId, currentChannel.Chat.size() - 1 - (msgIndex + inIndex));
     }
     
-    //done
-  	public void makeMsg(String message) throws RemoteException {
-  		if(inRoles == true) {
-  			
-  			Role temp = new Role();
-  			temp.Name = "";
-  			
-  			if(message.charAt(0) == '>' || message.charAt(0) == '<') {
-  				String username = new String();
-  				String rolename = new String();
-  				
-  				int pivot = 1;
-  	  			while(message.charAt(pivot) != ':') {
-  	  				username += message.charAt(pivot);
-  	  				pivot++;
-  	  			}
-  				
-  	  			pivot++;
-  	  			while(pivot < message.length()) {
-	  				rolename += message.charAt(pivot);
-	  				pivot++;
-	  			}
-  	  			
-  	  			long targetuserid = 0;
-  				
-  	  			for(int i = 0; i < currentGroup.Users.size(); i++)
-	  	  			if(currentGroup.Users.get(i).Nickname.equals(username))
-	  	  				targetuserid = currentGroup.Users.get(i).UserId;
-  	  			
-  	  			if(message.charAt(0) == '>')
-  	  				Client.giveTakeRole(currentUser.UserId, currentGroup.GroupId, targetuserid, rolename, true);
-  	  			else
-  	  				Client.giveTakeRole(currentUser.UserId, currentGroup.GroupId, targetuserid, rolename, false);
-  	  			
-  	  			roleView();
-    		
-  	  			return;
-  			}
-  			
-  			
-  			String[] a = {"make chat", "make role", "edit role", "make msg", "invite user", 
-  					"delete chat", "delete role", "kick user", "delete msg", "delete group",
-  					 "rename chat", "rename group"};
-  			
-  			String[] b = {"c", "r", "g", "m", "u", "d", "p", "k", "l", "p", "w", "j"};
-  			
-  			int pivot = 0;
-  			while(message.charAt(pivot) != ':') {
-  				temp.Name += message.charAt(pivot);
-  				pivot++;
-  			}
-  			
-  			for(int q = pivot; q < message.length(); q++)
-	  			for(int i = 0; i < a.length; i++)
-	  				if(b[i].equals(Character.toString(message.charAt(q))))
-	  					temp.Perms.add(new Pair<String, Boolean>(a[i], true));
-  			
-  			
-  			Client.makeRole(currentUser.UserId, currentGroup.GroupId, temp);
-  			
-  			
-    		roleView();
-    		
-  			return;
+    public void deleteRole(String name) throws RemoteException {
+    	Client.deleteRole(currentUser.UserId, currentGroup.GroupId, name);
+    	roleView();
+    	return;
+    }
+    
+    public boolean makeRole(String name, boolean canChats, boolean canRoles, boolean canMsg, boolean canUser, boolean canGroup) throws RemoteException {	
+    	Role temp = new Role();
+		temp.Name = name;
+		
+		for(int i = 0; i < currentGroup.Roles.size(); i++)
+			if(currentGroup.Roles.get(i).Name.equals(name))
+				return false;
+		
+		
+  		if(canChats){
+  			temp.Perms.add(new Pair<String, Boolean>("make chat", true));
+  			temp.Perms.add(new Pair<String, Boolean>("delete chat", true));
+  			temp.Perms.add(new Pair<String, Boolean>("rename chat", true));
   		}
   		
+  		if(canRoles){
+  			temp.Perms.add(new Pair<String, Boolean>("make role", true));
+  			temp.Perms.add(new Pair<String, Boolean>("delete role", true));
+  			temp.Perms.add(new Pair<String, Boolean>("edit role", true));
+  		}
+  		
+  		if(canMsg){
+  			temp.Perms.add(new Pair<String, Boolean>("make msg", true));
+  			temp.Perms.add(new Pair<String, Boolean>("delete msg", true));
+  		}
+  		
+  		if(canUser){
+  			temp.Perms.add(new Pair<String, Boolean>("invite user", true));
+  			//temp.Perms.add(new Pair<String, Boolean>("kick user", true));
+  		}
+  		
+  		if(canGroup){
+  			temp.Perms.add(new Pair<String, Boolean>("rename group", true));
+  			temp.Perms.add(new Pair<String, Boolean>("delete group", true));
+  			temp.Perms.add(new Pair<String, Boolean>("edit checks", true));
+  		}
+		
+		Client.makeRole(currentUser.UserId, currentGroup.GroupId, temp);
+		
+		roleView();
+		
+		return true;
+    }
+    
+    
+    void addCheck(String name) throws RemoteException {
+    	Client.addACheck(currentUser.UserId, currentGroup.GroupId, name);
+    	checkView();
+    }
+    
+    void removeCheck(String name) throws RemoteException {
+    	Client.takeACheck(currentUser.UserId, currentGroup.GroupId, name);
+    	checkView();
+    }
+    
+    void checkView() throws RemoteException {
+    	inRoles = true;
+    	currentChannel = new ChatListing();
+    	
+    	MsgData temp = new MsgData();
+    	temp.Text = "Current Checks:";
+    	currentChannel.addMsg(temp);
+    	
+    	for(int i = 0; i < Client.AvailibleCheckNames.length; i++) {
+    		
+    		boolean flag = false;
+    		for(int j = 0; j < Client.CurrentGroup.Check.size(); j++) {
+    			
+    			if(Client.CurrentGroup.Check.get(j).getName().equals(Client.AvailibleCheckNames[i])) {
+    				temp = new MsgData();
+    				temp.Text = Client.CurrentGroup.Check.get(j).getName() + " : active";
+    		    	currentChannel.addMsg(temp);
+    		    	flag = true;
+    		    	break;
+    			}
+    		}
+    		
+    		if(flag == false) {
+				temp = new MsgData();
+				temp.Text = Client.AvailibleCheckNames[i] + " : available";
+		    	currentChannel.addMsg(temp);
+			}
+    	}
+    }
+    
+    public void giveTakeRole(String Target, boolean giveQ) throws RemoteException {
+    	long targetuserid = 0;
+		
+    	String username = "";
+    	String rolename = "";
+    	
+    	//split the string here
+    	int pivot = 0;
+    	for(; (pivot < Target.length()) && (Target.charAt(pivot) != ':'); pivot++)
+    		username += Target.charAt(pivot);
+    	
+    	pivot++;
+    	
+    	if(pivot >= Target.length() - 1) {
+    		return;
+    	}
+    	
+    	for(int i = 0; i < currentGroup.Users.size(); i++) {
+    		if(currentGroup.Users.get(i).Nickname.equals(username))
+    			break;
+    		if(i == currentGroup.Users.size() - 1)
+    			return;
+    	}
+    	
+    	
+    	
+    	for(; pivot < Target.length(); pivot++)
+    		rolename += Target.charAt(pivot);
+    	
+		for(int i = 0; i < currentGroup.Users.size(); i++)
+	  		if(currentGroup.Users.get(i).Nickname.equals(username))
+	  			targetuserid = currentGroup.Users.get(i).UserId;
+		
+		Client.giveTakeRole(currentUser.UserId, currentGroup.GroupId, targetuserid, rolename, giveQ);
+		
+		roleView();
+    }
+    
+    
+    //done
+  	public void makeMsg(String message) throws RemoteException {
   		
   		MsgData newMsg = new MsgData();
   		newMsg.deleted = false;
@@ -205,86 +272,8 @@ public class model {
     	currentChannel = new ChatListing();
     	
     	MsgData temp = new MsgData();
-    	temp.Text = "How to make a role:";
+    	temp.Text = "Current Roles:";
     	currentChannel.addMsg(temp);
-    	
-    	{
-	    	temp = new MsgData();
-	    	temp.Text = "Enter \"Name:Flags\"";
-	    	currentChannel.addMsg(temp);
-	    	
-	    	temp = new MsgData();
-	    	temp.Text = "Ex. user:mu";
-	    	currentChannel.addMsg(temp);
-	    	
-	    	temp = new MsgData();
-	    	temp.Text = "List of Flags:";
-	    	currentChannel.addMsg(temp);
-	    	
-	    	temp = new MsgData();
-	    	temp.Text = "make chat : c";
-	    	currentChannel.addMsg(temp);
-	    	
-	    	temp = new MsgData();
-			temp.Text = "make role : r";
-			currentChannel.addMsg(temp);
-			
-			temp = new MsgData();
-			temp.Text = "edit role : g";
-			currentChannel.addMsg(temp);
-			
-			temp = new MsgData();
-			temp.Text = "make msg : m";
-			currentChannel.addMsg(temp);
-			
-			temp = new MsgData();
-			temp.Text = "invite user : u";
-			currentChannel.addMsg(temp);
-			
-			temp = new MsgData();
-			temp.Text = "delete chat : d";
-			currentChannel.addMsg(temp);
-			
-			temp = new MsgData();
-			temp.Text = "delete role : p";
-			currentChannel.addMsg(temp);
-			
-			//temp = new MsgData();
-			//temp.Text = "kick user : k";
-			//currentChannel.addMsg(temp);
-			
-			temp = new MsgData();
-			temp.Text = "delete msg : l";
-			currentChannel.addMsg(temp);
-			
-			temp = new MsgData();
-			temp.Text = "delete group : q";
-			currentChannel.addMsg(temp);
-	    	
-			temp = new MsgData();
-			temp.Text = "rename chat : w";
-			currentChannel.addMsg(temp);
-			
-			temp = new MsgData();
-			temp.Text = "rename group : j";
-			currentChannel.addMsg(temp);
-			
-			temp = new MsgData();
-	    	temp.Text = "How to give a role:";
-	    	currentChannel.addMsg(temp);
-	    	
-	    	temp = new MsgData();
-	    	temp.Text = "Type: \">username:rolename\"";
-	    	currentChannel.addMsg(temp);
-	    	
-	    	temp = new MsgData();
-	    	temp.Text = "How to take a role:";
-	    	currentChannel.addMsg(temp);
-	    	
-	    	temp = new MsgData();
-	    	temp.Text = "Type: \"<username:rolename\"";
-	    	currentChannel.addMsg(temp);
-    	}
     	
     	for(int i = 0; i < Client.CurrentGroup.Roles.size(); i++) {
     			temp = new MsgData();
@@ -337,10 +326,16 @@ public class model {
     	if(!Client.inviteUser(currentUser.UserId, currentGroup.GroupId, userId).equals("ok"))
     		return;
     	
+    	String username = "";
+    	
+    	for(int i = 0; i < currentGroup.Users.size(); i++)
+    		if(currentGroup.Users.get(i).UserId == userId)
+    			username = currentGroup.Users.get(i).Nickname;
+    	
     	selectChannel(0);
     	MsgData newMsg = new MsgData();
   		newMsg.deleted = false;
-  		newMsg.Text = userId + " has joined the group";
+  		newMsg.Text =  username + " has joined the group";
   		Client.sendMsg(currentUser.UserId, currentGroup.GroupId, currentChannel.ChatId, newMsg);
     }
     

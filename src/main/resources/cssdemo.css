@@ -1,0 +1,31 @@
+.root
+{
+	-fx-background-color: #1a1c38;	
+}
+
+.label
+{
+	-fx-text-fill: #dae0f5;
+	-fx-font-weight: bold;
+}
+
+.text-field, .context-menu
+{
+	-fx-background-color: #ffd494;
+	-fx-text-fill: #000000;
+}
+
+.menu-item .label {
+  -fx-text-fill: #000000;
+}
+
+
+.check-box
+{
+	-fx-text-fill: #ffd494;
+}
+
+.button
+{
+	-fx-background-color: #faf0e1;
+}

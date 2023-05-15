@@ -27,7 +27,7 @@ public class sprint3 extends Application {
 	
 	public void start(Stage stage) throws Exception {
 		
-		s = new ServerObject();
+		s = new ServerObject("test.xml");
 		registry = LocateRegistry.createRegistry(2084);
 		registry.rebind("concord-s", s);
 		c = new ClientObject(registry);

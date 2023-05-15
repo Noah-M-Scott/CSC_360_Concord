@@ -5,10 +5,19 @@ import java.util.ArrayList;
 public class GroupData {
 	public ArrayList<GroupUserData> Users = new ArrayList<GroupUserData>();
 	public ArrayList<ChatListing> Chats   = new ArrayList<ChatListing>();
-	public ArrayList<Role> Roles          = new ArrayList<Role>();   
+	public ArrayList<Role> Roles          = new ArrayList<Role>();
+	public ArrayList<TextCheck>	Check     = new ArrayList<TextCheck>();
 	public String Name = "NewGroup";
 	public long GroupId;
 	
+	public ArrayList<TextCheck> getCheck() {
+		return Check;
+	}
+
+	public void setCheck(ArrayList<TextCheck> check) {
+		Check = check;
+	}
+
 	public ArrayList<GroupUserData> getUsers() {
 		return Users;
 	}
@@ -59,6 +68,7 @@ public class GroupData {
 
 	private long chatIdCounter;
 	public long addChat(ChatListing in) {
+		in.Check = Check;
 		in.ChatId = chatIdCounter++;
 		Chats.add(in);
 		return Chats.size() - 1;

@@ -1,10 +1,12 @@
 package ConcordData;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.After;
+
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class CondcordTest {
 	ChatListing demoList;
@@ -12,8 +14,8 @@ public class CondcordTest {
 	UserData demoUser;
 	UserDataRepo demoUserRepo;
 	
-	@Before
-	public void setUp() throws Exception {
+	@Test
+	public void test() {
 		demoList = new ChatListing();
 		demoList.ChatName = "demoListing";
 		demoRepo = new GroupDataRepo();
@@ -21,14 +23,7 @@ public class CondcordTest {
 		demoUser.DisplayName = "demo";
 		demoUser.UserId = 42;
 		demoUserRepo = new UserDataRepo();
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
-	@Test
-	public void test() {
+		
 		MsgData testMsg = new MsgData();
 		testMsg.deleted = false;
 		testMsg.Text = "demo";
