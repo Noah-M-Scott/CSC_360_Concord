@@ -1,14 +1,16 @@
 package ConcordData;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class UserData {
-	public long UserId;
-	public ArrayList<Long> JoinedGroupIds  = new ArrayList<Long> ();
-	public int Status;
-	public String DisplayName;
-	public String Password;
-	public String Email;
+public class UserData implements Serializable {
+	private static final long serialVersionUID = -94966710639738628L;
+	private long UserId;
+	private ArrayList<Long> JoinedGroupIds  = new ArrayList<> ();
+	private int Status;
+	private String DisplayName;
+	private String Password;
+	private String Email;
 	
 	public long getUserId() {
 		return UserId;

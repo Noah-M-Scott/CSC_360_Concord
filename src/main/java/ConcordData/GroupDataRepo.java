@@ -3,7 +3,7 @@ package ConcordData;
 import java.util.HashMap;
 
 public class GroupDataRepo {
-	public HashMap<Long, GroupData> Groups = new HashMap<Long, GroupData>();
+	private HashMap<Long, GroupData> Groups = new HashMap<>();
 	private long idTally = 0;
 	
 	public GroupData findGroupById(long id){
@@ -15,9 +15,9 @@ public class GroupDataRepo {
 	}
 	
 	public void addGroup(GroupData in){
-		in.GroupId = idTally;
+		in.setGroupId(idTally);
 		idTally++;
-		Groups.put(in.GroupId, in);
+		Groups.put(in.getGroupId(), in);
 	}
 
 	public HashMap<Long, GroupData> getGroups() {

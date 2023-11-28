@@ -1,10 +1,11 @@
 package concordSprint2;
 
+
 import ConcordData.*;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface serverInterface extends Remote {
+public interface serverInterface extends Remote  {
 
 	public GroupData renameGroup(long UserId, long GroupId, String Name) throws RemoteException; 
 	public GroupData renameChat(long UserId, long GroupId, long ChatId, String Name) throws RemoteException;
@@ -21,9 +22,10 @@ public interface serverInterface extends Remote {
 	public GroupData deleteRole(long UserId, long GroupId, String RoleName) throws RemoteException;
 	public boolean deleteUser(long UserId, String Password) throws RemoteException;
 	public UserData addUser(UserData newUser) throws RemoteException;
-	public GroupData giveTakeRole(long UserId, long GroupId, long TargetUser, String RoleName, boolean giveOrTake) throws RemoteException; 
 	public void alertStatus(long UserId, long Status) throws RemoteException;
 	public UserData login(String Name, String Password, ClientInterface client) throws RemoteException;
 	public GroupData addACheck(long UserId, long GroupId, String CheckName) throws RemoteException;
 	public GroupData takeACheck(long UserId, long GroupId, String CheckName) throws RemoteException;
+	public GroupData giveRole(long UserId, long GroupId, long TargetUser, String RoleName) throws RemoteException; 
+	public GroupData takeRole(long UserId, long GroupId, long TargetUser, String RoleName) throws RemoteException; 
 }

@@ -2,23 +2,18 @@ package sprint3;
 
 import java.rmi.RemoteException;
 
-import ConcordData.Pair;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
-import javafx.scene.input.ContextMenuEvent;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 public class viewController {
 
@@ -26,10 +21,57 @@ public class viewController {
 	
 	//fxml label ids
     @FXML
-    Label msgBox0, msgBox1, msgBox2, msgBox3, msgBox4, msgBox5, msgBox6,
-    chnBox7, chnBox6, chnBox5, chnBox4, chnBox3, chnBox2, chnBox1, chnBox0, 
-    grpBox7, grpBox6, grpBox5, grpBox4, grpBox3, grpBox2, grpBox1, grpBox0,
-    channelLabel, grpLabel, grpMain;
+    Label msgBox0;
+    @FXML
+    Label msgBox1;
+    @FXML
+    Label msgBox2;
+    @FXML
+    Label msgBox3;
+    @FXML
+    Label msgBox4;
+    @FXML
+    Label msgBox5;
+    @FXML
+    Label msgBox6;
+    @FXML
+    Label chnBox7;
+    @FXML
+    Label chnBox6;
+    @FXML
+    Label chnBox5;
+    @FXML
+    Label chnBox4;
+    @FXML
+    Label chnBox3;
+    @FXML
+    Label chnBox2;
+    @FXML
+    Label chnBox1;
+    @FXML
+    Label chnBox0;
+    @FXML
+    Label grpBox7;
+    @FXML
+    Label grpBox6;
+    @FXML
+    Label grpBox5;
+    @FXML
+    Label grpBox4;
+    @FXML
+    Label grpBox3;
+    @FXML
+    Label grpBox2;
+    @FXML
+    Label grpBox1;
+    @FXML
+    Label grpBox0;
+    @FXML
+    Label channelLabel;
+    @FXML
+    Label grpLabel;
+    @FXML
+    Label grpMain;
     
     //the text field id
     @FXML
@@ -42,22 +84,67 @@ public class viewController {
     
     //all the many context menu ids
     @FXML
-    MenuItem msgContext0r, msgContext0d,
-    msgContext1r, msgContext1d,
-    msgContext2r, msgContext2d,
-    msgContext3r, msgContext3d,
-    msgContext4r, msgContext4d,
-    msgContext5r, msgContext5d,
-    msgContext6r, msgContext6d,
-    chnContext6, chnContext0,
-    chnContext1, chnContext2,
-    chnContext3, chnContext4,
-    chnContext5, chnBoxContext0, 
-    chnBoxContext1, chnBoxContext2,
-    chnBoxContext3, chnBoxContext4,
-    chnBoxContext5, chnBoxContext6,
-    chnBoxContext7, grpContext0,
-    grpContext1;
+    MenuItem msgContext0r;
+    @FXML
+    MenuItem msgContext0d;
+    @FXML
+    MenuItem msgContext1r;
+    @FXML
+    MenuItem msgContext1d;
+    @FXML
+    MenuItem msgContext2r;
+    @FXML
+    MenuItem msgContext2d;
+    @FXML
+    MenuItem msgContext3r;
+    @FXML
+    MenuItem msgContext3d;
+    @FXML
+    MenuItem msgContext4r;
+    @FXML
+    MenuItem msgContext4d;
+    @FXML
+    MenuItem msgContext5r;
+    @FXML
+    MenuItem msgContext5d;
+    @FXML
+    MenuItem msgContext6r;
+    @FXML
+    MenuItem msgContext6d;
+    @FXML
+    MenuItem chnContext6;
+    @FXML
+    MenuItem chnContext0;
+    @FXML
+    MenuItem chnContext1;
+    @FXML
+    MenuItem chnContext2;
+    @FXML
+    MenuItem chnContext3;
+    @FXML
+    MenuItem chnContext4;
+    @FXML
+    MenuItem chnContext5;
+    @FXML
+    MenuItem chnBoxContext0;
+    @FXML
+    MenuItem chnBoxContext1;
+    @FXML
+    MenuItem chnBoxContext2;
+    @FXML
+    MenuItem chnBoxContext3;
+    @FXML
+    MenuItem chnBoxContext4;
+    @FXML
+    MenuItem chnBoxContext5;
+    @FXML
+    MenuItem chnBoxContext6;
+    @FXML
+    MenuItem chnBoxContext7;
+    @FXML
+    MenuItem grpContext0;
+    @FXML
+    MenuItem grpContext1;
     
     @FXML
     VBox msgList;
@@ -65,8 +152,13 @@ public class viewController {
     @FXML
     HBox BoxBar;
     
-    Button makeRole, deleteRole;
-    CheckBox editChat, editRoles, editMsg, inviteUser, admin;
+    Button makeRole;
+    Button deleteRole;
+    CheckBox editChat;
+    CheckBox editRoles;
+    CheckBox editMsg;
+    CheckBox inviteUser;
+    CheckBox admin;
     TextField roleField;
     
     
@@ -74,10 +166,14 @@ public class viewController {
     
     int msgBoxLimit = 7;
     
-    boolean canChats, canRoles, canMsg, canUser, canGroup;
+    boolean canChats;
+    boolean canRoles;
+    boolean canMsg;
+    boolean canUser;
+    boolean canGroup;
     
     @FXML
-    void viewCheck(ActionEvent event) throws RemoteException {
+    void viewCheck(ActionEvent event) {
     	exitRoleMode();
     	
     	((Button)BoxBar.getChildren().get(2)).setText("Add");
@@ -85,7 +181,6 @@ public class viewController {
 			theModel.addCheck(msgField.getText());
 			drawMsgBoxes();
 		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}});
     	
@@ -94,7 +189,6 @@ public class viewController {
     		theModel.removeCheck(msgField.getText());
 			drawMsgBoxes();
 		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}});
     	
@@ -103,7 +197,7 @@ public class viewController {
     }
     
     @FXML
-    void giveRole(ActionEvent event) throws RemoteException {
+    void giveRole(ActionEvent event) {
     	channelLabel.setText("");
     	channelLabel.setVisible(false);
     	
@@ -122,31 +216,31 @@ public class viewController {
     	editChat = new CheckBox();
     	msgList.getChildren().add(editChat);
     	editChat.setText("can edit chats");
-    	editChat.setOnAction(e -> {canChats = !canChats;} );
+    	editChat.setOnAction(e -> canChats = !canChats );
     	editChat.setId("editChatCheck");
     	
     	editRoles = new CheckBox();
     	msgList.getChildren().add(editRoles);
     	editRoles.setText("can edit roles");
-    	editRoles.setOnAction(e -> {canRoles = !canRoles;} );
+    	editRoles.setOnAction(e -> canRoles = !canRoles );
     	editRoles.setId("editRolesCheck");
     	
     	editMsg = new CheckBox();
     	msgList.getChildren().add(editMsg);
     	editMsg.setText("can send and delete msgs");
-    	editMsg.setOnAction(e -> {canMsg = !canMsg;} );
+    	editMsg.setOnAction(e -> canMsg = !canMsg );
     	editMsg.setId("editMsgCheck");
     	
     	inviteUser = new CheckBox();
     	msgList.getChildren().add(inviteUser);
     	inviteUser.setText("can invite users");
-    	inviteUser.setOnAction(e -> {canUser = !canUser;} );
+    	inviteUser.setOnAction(e -> canUser = !canUser );
     	inviteUser.setId("inviteUserCheck");
     	
     	admin = new CheckBox();
     	msgList.getChildren().add(admin);
     	admin.setText("can rename and delete group");
-    	admin.setOnAction(e -> {canGroup = !canGroup;} );
+    	admin.setOnAction(e -> canGroup = !canGroup );
     	admin.setId("editGroupCheck");
     	
     	roleField = new TextField();
@@ -158,11 +252,10 @@ public class viewController {
     	msgList.getChildren().add(makeRole);
     	makeRole.setText("Make Role");
     	makeRole.setOnAction(e -> {try {
-			if(theModel.makeRole(roleField.getText(), canChats, canRoles, canMsg, canUser, canGroup) != true)
+			if(!theModel.makeRole(roleField.getText(), canChats, canRoles, canMsg, canUser, canGroup))
 				roleField.setText("role name taken");
 			drawMsgBoxes();
 		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}});
     	makeRole.setId("makeRole");
@@ -174,7 +267,6 @@ public class viewController {
 			theModel.deleteRole(roleField.getText());
 			drawMsgBoxes();
 		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}});
     	deleteRole.setId("deleteRole");
@@ -186,7 +278,6 @@ public class viewController {
 			theModel.giveTakeRole(msgField.getText(), true);
 			drawMsgBoxes();
 		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}});
     	
@@ -195,7 +286,6 @@ public class viewController {
 			theModel.giveTakeRole(msgField.getText(), false);
 			drawMsgBoxes();
 		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}});
     	
@@ -239,11 +329,10 @@ public class viewController {
 			try {
 				onMsgSend(e);
 			} catch (RemoteException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		});
-    	((Button)BoxBar.getChildren().get(0)).setOnAction(e -> onPlus(e));
+    	((Button)BoxBar.getChildren().get(0)).setOnAction(this::onPlus);
     	
 
     	theModel.setMsgWindow(7);
@@ -261,10 +350,7 @@ public class viewController {
 		for(int i = 0; i < msgBoxLimit; i++) {
 			
 			msgBoxPass[i].setText(theModel.getMsgWindow()); //get text from model
-			if(msgBoxPass[i].getText().equals(""))
-				msgBoxPass[i].setVisible(false);
-			else
-				msgBoxPass[i].setVisible(true);
+			msgBoxPass[i].setVisible(!msgBoxPass[i].getText().equals(""));
 		}
 	}
 	
@@ -274,10 +360,7 @@ public class viewController {
 		
 		for(int i = 0; i < chnBoxPass.length; i++) {
 			chnBoxPass[i].setText(theModel.getChnWindow()); //call model
-			if(chnBoxPass[i].getText().equals(""))
-				chnBoxPass[i].setVisible(false);
-			else
-				chnBoxPass[i].setVisible(true);
+			chnBoxPass[i].setVisible(!chnBoxPass[i].getText().equals(""));
 		}
 	}
 	
@@ -287,10 +370,7 @@ public class viewController {
 
 		for(int i = 0; i < grpBoxPass.length; i++) {
 			grpBoxPass[i].setText(theModel.getGrpWindow()); //call model
-			if(grpBoxPass[i].getText().equals(""))
-				grpBoxPass[i].setVisible(false);
-			else
-				grpBoxPass[i].setVisible(true);
+			grpBoxPass[i].setVisible(!grpBoxPass[i].getText().equals(""));
 		}
 	}
     
@@ -359,11 +439,7 @@ public class viewController {
     
     
     
-    
-   // @FXML
-    //void kickUser(ActionEvent event) {
-    	//System.out.println( ((MenuItem)event.getSource()).toString() );
-   // }
+   
 
     //reply to the message.addChat(newChat)
     @FXML
@@ -414,10 +490,7 @@ public class viewController {
     void onChnSelect(MouseEvent event) {
     	channelLabel.setText(((Label)event.getSource()).getText()); //get the clicked label's text, set the chat heading to it
     	
-    	if(channelLabel.getText().equals(""))
-    		channelLabel.setVisible(false);
-		else
-			channelLabel.setVisible(true);
+    	channelLabel.setVisible(!channelLabel.getText().equals(""));
     	
     	//cludge, get the label's id number to get it's index (see model), pass it to model
     	theModel.selectChannel( Integer.valueOf(String.valueOf( ((Label)event.getSource()).toString().charAt(15))) );
@@ -431,11 +504,7 @@ public class viewController {
     void onGrpSelect(MouseEvent event) {
     	grpLabel.setText(((Label)event.getSource()).getText()); //same as above
     	
-    	if(grpLabel.getText().equals(""))
-    		grpLabel.setVisible(false);
-		else
-			grpLabel.setVisible(true);
-    	
+    	grpLabel.setVisible(!grpLabel.getText().equals(""));
     	
     	//same as above
     	theModel.selectGroup( Integer.valueOf(String.valueOf( ((Label)event.getSource()).toString().charAt(15))) );
@@ -482,7 +551,7 @@ public class viewController {
     //does nothing yet
     @FXML
     void onPlus(ActionEvent event) {
-
+    	return;
     }
     
     //init stuff
@@ -525,16 +594,13 @@ public class viewController {
 		drawChnBoxes();
 		drawGrpBoxes();
 		channelLabel.setText(chnBox0.getText());
-		if(channelLabel.getText().equals(""))
-    		channelLabel.setVisible(false);
-		else
-			channelLabel.setVisible(true);
+
+		channelLabel.setVisible(!channelLabel.getText().equals(""));
 		grpLabel.setText(grpBox0.getText());
-		if(grpLabel.getText().equals(""))
-    		grpLabel.setVisible(false);
-		else
-			grpLabel.setVisible(true);
-		grpMain.setText(theModel.Client.CurrentUser.DisplayName);
+		
+
+		grpLabel.setVisible(!grpLabel.getText().equals(""));
+		grpMain.setText(theModel.Client.CurrentUser.getDisplayName());
 	}
 	
 }

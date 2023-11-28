@@ -1,97 +1,1907 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="17.0.5" class="java.beans.XMLDecoder">
- <object class="ConcordData.GroupDataRepo">
+<java version="17.0.8.1" class="java.beans.XMLDecoder">
+ <object class="ConcordData.GroupDataRepo" id="GroupDataRepo0">
+  <void property="groups">
+   <void method="put">
+    <long>1</long>
+    <object class="ConcordData.GroupData" id="GroupData0">
+     <void property="groupId">
+      <long>1</long>
+     </void>
+     <void property="roles">
+      <void method="add">
+       <object class="ConcordData.Role" id="Role0">
+        <void class="ConcordData.Role" method="getField">
+         <string>Name</string>
+         <void method="set">
+          <object idref="Role0"/>
+          <string>admin</string>
+         </void>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="users">
+      <void method="add">
+       <object class="ConcordData.GroupUserData" id="GroupUserData0">
+        <void class="ConcordData.GroupUserData" method="getField">
+         <string>Nickname</string>
+         <void method="set">
+          <object idref="GroupUserData0"/>
+          <string>demo</string>
+         </void>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void id="Long0" property="chatIdCounter"/>
+    </object>
+   </void>
+   <void method="put">
+    <long>2</long>
+    <object class="ConcordData.GroupData" id="GroupData1">
+     <void property="groupId">
+      <long>2</long>
+     </void>
+     <void property="roles">
+      <void method="add">
+       <object class="ConcordData.Role" id="Role1">
+        <void class="ConcordData.Role" method="getField">
+         <string>Name</string>
+         <void method="set">
+          <object idref="Role1"/>
+          <string>admin</string>
+         </void>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="users">
+      <void method="add">
+       <object class="ConcordData.GroupUserData" id="GroupUserData1">
+        <void class="ConcordData.GroupUserData" method="getField">
+         <string>Nickname</string>
+         <void method="set">
+          <object idref="GroupUserData1"/>
+          <string>demo</string>
+         </void>
+        </void>
+       </object>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <long>3</long>
+    <object class="ConcordData.GroupData" id="GroupData2">
+     <void property="groupId">
+      <long>3</long>
+     </void>
+     <void property="roles">
+      <void method="add">
+       <object class="ConcordData.Role" id="Role2">
+        <void class="ConcordData.Role" method="getField">
+         <string>Name</string>
+         <void method="set">
+          <object idref="Role2"/>
+          <string>admin</string>
+         </void>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="users">
+      <void method="add">
+       <object class="ConcordData.GroupUserData" id="GroupUserData2">
+        <void class="ConcordData.GroupUserData" method="getField">
+         <string>Nickname</string>
+         <void method="set">
+          <object idref="GroupUserData2"/>
+          <string>demo</string>
+         </void>
+        </void>
+       </object>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <long>4</long>
+    <object class="ConcordData.GroupData" id="GroupData3">
+     <void property="groupId">
+      <long>4</long>
+     </void>
+     <void property="roles">
+      <void method="add">
+       <object class="ConcordData.Role" id="Role3">
+        <void class="ConcordData.Role" method="getField">
+         <string>Name</string>
+         <void method="set">
+          <object idref="Role3"/>
+          <string>admin</string>
+         </void>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="users">
+      <void method="add">
+       <object class="ConcordData.GroupUserData" id="GroupUserData3">
+        <void class="ConcordData.GroupUserData" method="getField">
+         <string>Nickname</string>
+         <void method="set">
+          <object idref="GroupUserData3"/>
+          <string>demo</string>
+         </void>
+        </void>
+       </object>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <long>5</long>
+    <object class="ConcordData.GroupData" id="GroupData4">
+     <void property="groupId">
+      <long>5</long>
+     </void>
+     <void property="roles">
+      <void method="add">
+       <object class="ConcordData.Role" id="Role4">
+        <void class="ConcordData.Role" method="getField">
+         <string>Name</string>
+         <void method="set">
+          <object idref="Role4"/>
+          <string>admin</string>
+         </void>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="users">
+      <void method="add">
+       <object class="ConcordData.GroupUserData" id="GroupUserData4">
+        <void class="ConcordData.GroupUserData" method="getField">
+         <string>Nickname</string>
+         <void method="set">
+          <object idref="GroupUserData4"/>
+          <string>demo</string>
+         </void>
+        </void>
+       </object>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <long>6</long>
+    <object class="ConcordData.GroupData" id="GroupData5">
+     <void property="groupId">
+      <long>6</long>
+     </void>
+     <void property="roles">
+      <void method="add">
+       <object class="ConcordData.Role" id="Role5">
+        <void class="ConcordData.Role" method="getField">
+         <string>Name</string>
+         <void method="set">
+          <object idref="Role5"/>
+          <string>admin</string>
+         </void>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="users">
+      <void method="add">
+       <object class="ConcordData.GroupUserData" id="GroupUserData5">
+        <void class="ConcordData.GroupUserData" method="getField">
+         <string>Nickname</string>
+         <void method="set">
+          <object idref="GroupUserData5"/>
+          <string>demo</string>
+         </void>
+        </void>
+       </object>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <long>7</long>
+    <object class="ConcordData.GroupData" id="GroupData6">
+     <void property="groupId">
+      <long>7</long>
+     </void>
+     <void property="roles">
+      <void method="add">
+       <object class="ConcordData.Role" id="Role6">
+        <void class="ConcordData.Role" method="getField">
+         <string>Name</string>
+         <void method="set">
+          <object idref="Role6"/>
+          <string>admin</string>
+         </void>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="users">
+      <void method="add">
+       <object class="ConcordData.GroupUserData" id="GroupUserData6">
+        <void class="ConcordData.GroupUserData" method="getField">
+         <string>Nickname</string>
+         <void method="set">
+          <object idref="GroupUserData6"/>
+          <string>demo</string>
+         </void>
+        </void>
+       </object>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <long>8</long>
+    <object class="ConcordData.GroupData" id="GroupData7">
+     <void property="groupId">
+      <long>8</long>
+     </void>
+     <void property="roles">
+      <void method="add">
+       <object class="ConcordData.Role" id="Role7">
+        <void class="ConcordData.Role" method="getField">
+         <string>Name</string>
+         <void method="set">
+          <object idref="Role7"/>
+          <string>admin</string>
+         </void>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="users">
+      <void method="add">
+       <object class="ConcordData.GroupUserData" id="GroupUserData7">
+        <void class="ConcordData.GroupUserData" method="getField">
+         <string>Nickname</string>
+         <void method="set">
+          <object idref="GroupUserData7"/>
+          <string>demo</string>
+         </void>
+        </void>
+       </object>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <long>9</long>
+    <object class="ConcordData.GroupData" id="GroupData8">
+     <void property="groupId">
+      <long>9</long>
+     </void>
+     <void property="roles">
+      <void method="add">
+       <object class="ConcordData.Role" id="Role8">
+        <void class="ConcordData.Role" method="getField">
+         <string>Name</string>
+         <void method="set">
+          <object idref="Role8"/>
+          <string>admin</string>
+         </void>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="users">
+      <void method="add">
+       <object class="ConcordData.GroupUserData" id="GroupUserData8">
+        <void class="ConcordData.GroupUserData" method="getField">
+         <string>Nickname</string>
+         <void method="set">
+          <object idref="GroupUserData8"/>
+          <string>demo</string>
+         </void>
+        </void>
+       </object>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <long>10</long>
+    <object class="ConcordData.GroupData" id="GroupData9">
+     <void property="chatIdCounter">
+      <long>1</long>
+     </void>
+     <void property="chats">
+      <void method="add">
+       <object class="ConcordData.ChatListing" id="ChatListing0">
+        <void property="chat">
+         <void method="add">
+          <object class="ConcordData.MsgData" id="MsgData0">
+           <void class="ConcordData.MsgData" method="getField">
+            <string>Text</string>
+            <void method="set">
+             <object idref="MsgData0"/>
+             <string>demo has joined the group</string>
+            </void>
+           </void>
+          </object>
+         </void>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="groupId">
+      <long>10</long>
+     </void>
+     <void property="name">
+      <string>invited</string>
+     </void>
+     <void property="roles">
+      <void method="add">
+       <object class="ConcordData.Role" id="Role9">
+        <void class="ConcordData.Role" method="getField">
+         <string>Name</string>
+         <void method="set">
+          <object idref="Role9"/>
+          <string>admin</string>
+         </void>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="users">
+      <void method="add">
+       <object class="ConcordData.GroupUserData" id="GroupUserData9">
+        <void class="ConcordData.GroupUserData" method="getField">
+         <string>UserId</string>
+         <void method="set">
+          <object idref="GroupUserData9"/>
+          <long>1</long>
+         </void>
+        </void>
+        <void class="ConcordData.GroupUserData" method="getField">
+         <string>Nickname</string>
+         <void method="set">
+          <object idref="GroupUserData9"/>
+          <string>newdemo</string>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="ConcordData.GroupUserData" id="GroupUserData10">
+        <void class="ConcordData.GroupUserData" method="getField">
+         <string>Nickname</string>
+         <void method="set">
+          <object idref="GroupUserData10"/>
+          <string>demo</string>
+         </void>
+        </void>
+       </object>
+      </void>
+     </void>
+    </object>
+   </void>
+  </void>
   <void property="idTally">
-   <long>1</long>
+   <long>11</long>
   </void>
  </object>
  <object class="ConcordData.UserDataRepo" id="UserDataRepo0">
   <void property="idTally">
-   <long>3</long>
+   <long>2</long>
+  </void>
+  <void property="names">
+   <void method="put">
+    <string>newdemo</string>
+    <long>1</long>
+   </void>
+   <void method="put">
+    <string>demo</string>
+    <object idref="Long0"/>
+   </void>
+  </void>
+  <void property="users">
+   <void method="put">
+    <object idref="Long0"/>
+    <object class="ConcordData.UserData" id="UserData0">
+     <void property="displayName">
+      <string>demo</string>
+     </void>
+     <void property="joinedGroupIds">
+      <void method="add">
+       <long>1</long>
+      </void>
+      <void method="add">
+       <long>2</long>
+      </void>
+      <void method="add">
+       <long>3</long>
+      </void>
+      <void method="add">
+       <long>4</long>
+      </void>
+      <void method="add">
+       <long>5</long>
+      </void>
+      <void method="add">
+       <long>6</long>
+      </void>
+      <void method="add">
+       <long>7</long>
+      </void>
+      <void method="add">
+       <long>8</long>
+      </void>
+      <void method="add">
+       <long>9</long>
+      </void>
+      <void method="add">
+       <long>10</long>
+      </void>
+     </void>
+     <void property="password">
+      <string>demo</string>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <long>1</long>
+    <object class="ConcordData.UserData" id="UserData1">
+     <void property="displayName">
+      <string>newdemo</string>
+     </void>
+     <void property="joinedGroupIds">
+      <void method="add">
+       <long>10</long>
+      </void>
+     </void>
+     <void property="password">
+      <string>newdemo</string>
+     </void>
+     <void property="userId">
+      <long>1</long>
+     </void>
+    </object>
+   </void>
   </void>
  </object>
-<void class="ConcordData.UserData" id="Field0" method="getField">
- <string>JoinedGroupIds</string>
+<void class="ConcordData.Pair" id="Pair0">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>delete role</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair1">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>delete group</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair2">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>edit role</string>
+ </void>
+</void>
+<void class="ConcordData.Role" id="Field0" method="getField">
+ <string>Perms</string>
  <void id="ArrayList0" method="get">
-  <object class="ConcordData.UserData" id="UserData0">
-   <void class="ConcordData.UserData" method="getField">
-    <string>UserId</string>
-    <void method="set">
-     <object idref="UserData0"/>
-     <long>1</long>
-    </void>
-   </void>
-   <void class="ConcordData.UserData" method="getField">
-    <string>DisplayName</string>
-    <void method="set">
-     <object idref="UserData0"/>
-     <string>demo2</string>
-    </void>
-   </void>
-   <void class="ConcordData.UserData" method="getField">
-    <string>Password</string>
-    <void method="set">
-     <object idref="UserData0"/>
-     <string>demo2</string>
-    </void>
-   </void>
-  </object>
+  <object idref="Role4"/>
   <void method="add">
-   <long>0</long>
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>make role</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>edit role</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>make msg</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>invite user</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>delete chat</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>delete role</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>delete msg</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>delete group</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>rename chat</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>rename group</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>edit checks</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>make chat</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
   </void>
  </void>
 </void>
 <void idref="ArrayList0"/>
-<void class="ConcordData.UserDataRepo" id="Field1" method="getField">
- <string>Users</string>
- <void id="HashMap0" method="get">
-  <object idref="UserDataRepo0"/>
-  <void method="put">
-   <long>2</long>
-   <object class="ConcordData.UserData" id="UserData1">
-    <void class="ConcordData.UserData" method="getField">
-     <string>UserId</string>
-     <void method="set">
-      <object idref="UserData1"/>
-      <long>2</long>
-     </void>
+<void class="ConcordData.Pair" id="Pair3">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>delete msg</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair4">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>delete group</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair5">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>edit role</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair6">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>edit role</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair7">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>invite user</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair8">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>delete role</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair9">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>make chat</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair10">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>edit role</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair11">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>delete role</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair12">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>edit checks</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair13">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>edit checks</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair14">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>invite user</string>
+ </void>
+</void>
+<void class="ConcordData.Role" id="Field1" method="getField">
+ <string>Perms</string>
+ <void id="ArrayList1" method="get">
+  <object idref="Role1"/>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>make role</string>
     </void>
-    <void class="ConcordData.UserData" method="getField">
-     <string>DisplayName</string>
-     <void method="set">
-      <object idref="UserData1"/>
-      <string>demospy</string>
-     </void>
-    </void>
-    <void class="ConcordData.UserData" method="getField">
-     <string>Password</string>
-     <void method="set">
-      <object idref="UserData1"/>
-      <string>demo</string>
-     </void>
+    <void property="value">
+     <boolean>true</boolean>
     </void>
    </object>
   </void>
-  <void method="put">
-   <long>1</long>
-   <object idref="UserData0"/>
+  <void method="add">
+   <object idref="Pair10"/>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>make msg</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>invite user</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>delete chat</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>delete role</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object idref="Pair3"/>
+  </void>
+  <void method="add">
+   <object idref="Pair4"/>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>rename chat</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>rename group</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>edit checks</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object idref="Pair9"/>
   </void>
  </void>
 </void>
-<void idref="HashMap0"/>
-<void class="ConcordData.UserDataRepo" id="Field2" method="getField">
- <string>Names</string>
- <void id="HashMap1" method="get">
-  <object idref="UserDataRepo0"/>
-  <void method="put">
-   <string>demo2</string>
-   <long>1</long>
+<void idref="ArrayList1"/>
+<void class="ConcordData.Pair" id="Pair15">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>make chat</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair16">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>edit role</string>
+ </void>
+</void>
+<void class="ConcordData.Role" id="Field2" method="getField">
+ <string>Perms</string>
+ <void id="ArrayList2" method="get">
+  <object idref="Role2"/>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>make role</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
   </void>
-  <void method="put">
-   <string>demospy</string>
-   <long>2</long>
+  <void method="add">
+   <object idref="Pair16"/>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>make msg</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object idref="Pair14"/>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>delete chat</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>delete role</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>delete msg</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>delete group</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>rename chat</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>rename group</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>edit checks</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>make chat</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
   </void>
  </void>
 </void>
-<void idref="HashMap1"/>
+<void idref="ArrayList2"/>
+<void class="ConcordData.Role" id="Field3" method="getField">
+ <string>Perms</string>
+ <void id="ArrayList3" method="get">
+  <object idref="Role5"/>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>make role</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object idref="Pair6"/>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>make msg</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>invite user</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>delete chat</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>delete role</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>delete msg</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>delete group</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>rename chat</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>rename group</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>edit checks</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>make chat</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+ </void>
+</void>
+<void idref="ArrayList3"/>
+<void class="ConcordData.Pair" id="Pair17">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>delete role</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair18">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>make role</string>
+ </void>
+</void>
+<void class="ConcordData.Role" id="Field4" method="getField">
+ <string>Perms</string>
+ <void id="ArrayList4" method="get">
+  <object idref="Role8"/>
+  <void method="add">
+   <object idref="Pair18"/>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>edit role</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>make msg</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>invite user</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>delete chat</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object idref="Pair17"/>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>delete msg</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>delete group</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>rename chat</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>rename group</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>edit checks</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object idref="Pair15"/>
+  </void>
+ </void>
+</void>
+<void idref="ArrayList4"/>
+<void class="ConcordData.Pair" id="Pair19">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>rename chat</string>
+ </void>
+</void>
+<void class="ConcordData.GroupUserData" id="Field5" method="getField">
+ <string>Roles</string>
+ <void id="ArrayList5" method="get">
+  <object idref="GroupUserData1"/>
+  <void method="add">
+   <object idref="Role1"/>
+  </void>
+ </void>
+</void>
+<void idref="ArrayList5"/>
+<void class="ConcordData.GroupUserData" id="Field6" method="getField">
+ <string>Roles</string>
+ <void id="ArrayList6" method="get">
+  <object idref="GroupUserData5"/>
+  <void method="add">
+   <object idref="Role5"/>
+  </void>
+ </void>
+</void>
+<void idref="ArrayList6"/>
+<void class="ConcordData.Pair" id="Pair20">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>make chat</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair21">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>make role</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair22">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>make msg</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair23">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>rename group</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair24">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>edit role</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair25">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>make msg</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair26">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>delete msg</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair27">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>rename chat</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair28">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>delete chat</string>
+ </void>
+</void>
+<void class="ConcordData.GroupUserData" id="Field7" method="getField">
+ <string>Roles</string>
+ <void id="ArrayList7" method="get">
+  <object idref="GroupUserData8"/>
+  <void method="add">
+   <object idref="Role8"/>
+  </void>
+ </void>
+</void>
+<void idref="ArrayList7"/>
+<void class="ConcordData.Pair" id="Pair29">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>delete chat</string>
+ </void>
+</void>
+<void class="ConcordData.GroupUserData" id="Field8" method="getField">
+ <string>Roles</string>
+ <void id="ArrayList8" method="get">
+  <object idref="GroupUserData6"/>
+  <void method="add">
+   <object idref="Role6"/>
+  </void>
+ </void>
+</void>
+<void idref="ArrayList8"/>
+<void class="ConcordData.Pair" id="Pair30">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>delete role</string>
+ </void>
+</void>
+<void class="ConcordData.GroupUserData" id="Field9" method="getField">
+ <string>Roles</string>
+ <void id="ArrayList9" method="get">
+  <object idref="GroupUserData7"/>
+  <void method="add">
+   <object idref="Role7"/>
+  </void>
+ </void>
+</void>
+<void idref="ArrayList9"/>
+<void class="ConcordData.Pair" id="Pair31">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>rename group</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair32">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>make role</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair33">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>rename chat</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair34">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>delete chat</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair35">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>delete group</string>
+ </void>
+</void>
+<void class="ConcordData.Role" id="Field10" method="getField">
+ <string>Perms</string>
+ <void id="ArrayList10" method="get">
+  <object idref="Role9"/>
+  <void method="add">
+   <object idref="Pair21"/>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>edit role</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>make msg</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object idref="Pair7"/>
+  </void>
+  <void method="add">
+   <object idref="Pair29"/>
+  </void>
+  <void method="add">
+   <object idref="Pair8"/>
+  </void>
+  <void method="add">
+   <object idref="Pair26"/>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>delete group</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>rename chat</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object idref="Pair31"/>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>edit checks</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>make chat</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+ </void>
+</void>
+<void idref="ArrayList10"/>
+<void class="ConcordData.Pair" id="Pair36">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>make chat</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair37">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>rename group</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair38">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>rename group</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair39">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>rename group</string>
+ </void>
+</void>
+<void class="ConcordData.GroupUserData" id="Field11" method="getField">
+ <string>Roles</string>
+ <void id="ArrayList11" method="get">
+  <object idref="GroupUserData0"/>
+  <void method="add">
+   <object idref="Role0"/>
+  </void>
+ </void>
+</void>
+<void idref="ArrayList11"/>
+<void class="ConcordData.Pair" id="Pair40">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>rename chat</string>
+ </void>
+</void>
+<void class="ConcordData.Role" id="Field12" method="getField">
+ <string>Perms</string>
+ <void id="ArrayList12" method="get">
+  <object idref="Role6"/>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>make role</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object idref="Pair24"/>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>make msg</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>invite user</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object idref="Pair34"/>
+  </void>
+  <void method="add">
+   <object idref="Pair11"/>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>delete msg</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object idref="Pair1"/>
+  </void>
+  <void method="add">
+   <object idref="Pair33"/>
+  </void>
+  <void method="add">
+   <object idref="Pair23"/>
+  </void>
+  <void method="add">
+   <object idref="Pair12"/>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>make chat</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+ </void>
+</void>
+<void idref="ArrayList12"/>
+<void class="ConcordData.Pair" id="Pair41">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>edit role</string>
+ </void>
+</void>
+<void class="ConcordData.GroupUserData" id="Field13" method="getField">
+ <string>Roles</string>
+ <void id="ArrayList13" method="get">
+  <object idref="GroupUserData4"/>
+  <void method="add">
+   <object idref="Role4"/>
+  </void>
+ </void>
+</void>
+<void idref="ArrayList13"/>
+<void class="ConcordData.Pair" id="Pair42">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>make msg</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair43">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>edit checks</string>
+ </void>
+</void>
+<void class="ConcordData.GroupUserData" id="Field14" method="getField">
+ <string>Roles</string>
+ <void id="ArrayList14" method="get">
+  <object idref="GroupUserData2"/>
+  <void method="add">
+   <object idref="Role2"/>
+  </void>
+ </void>
+</void>
+<void idref="ArrayList14"/>
+<void class="ConcordData.Pair" id="Pair44">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>delete msg</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair45">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>delete msg</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair46">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>invite user</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair47">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>make role</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair48">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>make chat</string>
+ </void>
+</void>
+<void class="ConcordData.Role" id="Field15" method="getField">
+ <string>Perms</string>
+ <void id="ArrayList15" method="get">
+  <object idref="Role7"/>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>make role</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object idref="Pair5"/>
+  </void>
+  <void method="add">
+   <object idref="Pair42"/>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>invite user</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object idref="Pair28"/>
+  </void>
+  <void method="add">
+   <object idref="Pair30"/>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>delete msg</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>delete group</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object idref="Pair40"/>
+  </void>
+  <void method="add">
+   <object idref="Pair38"/>
+  </void>
+  <void method="add">
+   <object idref="Pair13"/>
+  </void>
+  <void method="add">
+   <object idref="Pair20"/>
+  </void>
+ </void>
+</void>
+<void idref="ArrayList15"/>
+<void class="ConcordData.Pair" id="Pair49">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>delete chat</string>
+ </void>
+</void>
+<void class="ConcordData.Pair" id="Pair50">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>invite user</string>
+ </void>
+</void>
+<void class="ConcordData.GroupUserData" id="Field16" method="getField">
+ <string>Roles</string>
+ <void id="ArrayList16" method="get">
+  <object idref="GroupUserData3"/>
+  <void method="add">
+   <object idref="Role3"/>
+  </void>
+ </void>
+</void>
+<void idref="ArrayList16"/>
+<void class="ConcordData.Pair" id="Pair51">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>edit checks</string>
+ </void>
+</void>
+<void class="ConcordData.GroupUserData" id="Field17" method="getField">
+ <string>Roles</string>
+ <void id="ArrayList17" method="get">
+  <object idref="GroupUserData10"/>
+  <void method="add">
+   <object idref="Role9"/>
+  </void>
+ </void>
+</void>
+<void idref="ArrayList17"/>
+<void class="ConcordData.Pair" id="Pair52">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>delete chat</string>
+ </void>
+</void>
+<void class="ConcordData.Role" id="Field18" method="getField">
+ <string>Perms</string>
+ <void id="ArrayList18" method="get">
+  <object idref="Role0"/>
+  <void method="add">
+   <object idref="Pair32"/>
+  </void>
+  <void method="add">
+   <object idref="Pair2"/>
+  </void>
+  <void method="add">
+   <object idref="Pair22"/>
+  </void>
+  <void method="add">
+   <object idref="Pair46"/>
+  </void>
+  <void method="add">
+   <object idref="Pair52"/>
+  </void>
+  <void method="add">
+   <object idref="Pair0"/>
+  </void>
+  <void method="add">
+   <object idref="Pair44"/>
+  </void>
+  <void method="add">
+   <object class="ConcordData.Pair">
+    <void property="key">
+     <string>delete group</string>
+    </void>
+    <void property="value">
+     <boolean>true</boolean>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object idref="Pair19"/>
+  </void>
+  <void method="add">
+   <object idref="Pair37"/>
+  </void>
+  <void method="add">
+   <object idref="Pair43"/>
+  </void>
+  <void method="add">
+   <object idref="Pair48"/>
+  </void>
+ </void>
+</void>
+<void idref="ArrayList18"/>
+<void class="ConcordData.Pair" id="Pair53">
+ <void property="value">
+  <boolean>true</boolean>
+ </void>
+ <void property="key">
+  <string>delete role</string>
+ </void>
+</void>
+<void class="ConcordData.Role" id="Field19" method="getField">
+ <string>Perms</string>
+ <void id="ArrayList19" method="get">
+  <object idref="Role3"/>
+  <void method="add">
+   <object idref="Pair47"/>
+  </void>
+  <void method="add">
+   <object idref="Pair41"/>
+  </void>
+  <void method="add">
+   <object idref="Pair25"/>
+  </void>
+  <void method="add">
+   <object idref="Pair50"/>
+  </void>
+  <void method="add">
+   <object idref="Pair49"/>
+  </void>
+  <void method="add">
+   <object idref="Pair53"/>
+  </void>
+  <void method="add">
+   <object idref="Pair45"/>
+  </void>
+  <void method="add">
+   <object idref="Pair35"/>
+  </void>
+  <void method="add">
+   <object idref="Pair27"/>
+  </void>
+  <void method="add">
+   <object idref="Pair39"/>
+  </void>
+  <void method="add">
+   <object idref="Pair51"/>
+  </void>
+  <void method="add">
+   <object idref="Pair36"/>
+  </void>
+ </void>
+</void>
+<void idref="ArrayList19"/>
+<void class="ConcordData.GroupUserData" id="Field20" method="getField">
+ <string>Roles</string>
+ <void id="ArrayList20" method="get">
+  <object idref="GroupUserData9"/>
+  <void method="add">
+   <object idref="Role9"/>
+  </void>
+ </void>
+</void>
+<void idref="ArrayList20"/>
 </java>

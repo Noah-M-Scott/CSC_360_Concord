@@ -21,10 +21,10 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 	private static final long serialVersionUID = -2;
 	
 	GroupDataRepo GroupDataRepository = new GroupDataRepo();
-	HashMap<Long, ClientInterface> RMIClientList = new HashMap<Long, ClientInterface>();
+	HashMap<Long, ClientInterface> RMIClientList = new HashMap<>();
 	UserDataRepo currentUserRepository = new UserDataRepo();
 	String storageFileName;
-	ArrayList<TextCheck> AvailibleCheck = new ArrayList<TextCheck>();
+	ArrayList<TextCheck> AvailibleCheck = new ArrayList<>();
 	
 	
 	public ServerObject(String storageFileName) throws RemoteException {
@@ -38,7 +38,6 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 		AvailibleCheck.add(new AutoExpand(Abbr, Full));
 		
 		this.storageFileName = storageFileName;
-		// TODO Auto-generated constructor stub
 		
 	}
 
@@ -47,13 +46,13 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 	public void saveToDisk() {
 		XMLEncoder encoder=null;
 		try{
-		encoder=new XMLEncoder(new BufferedOutputStream(new FileOutputStream(storageFileName)));
+			encoder=new XMLEncoder(new BufferedOutputStream(new FileOutputStream(storageFileName)));
+			encoder.writeObject(GroupDataRepository);
+			encoder.writeObject(currentUserRepository);
+			encoder.close();
 		}catch(FileNotFoundException fileNotFound){
 			System.out.println("ERROR: While Creating or Opening File");
 		}
-		encoder.writeObject(GroupDataRepository);
-		encoder.writeObject(currentUserRepository);
-		encoder.close();
 	}
 	
 	
@@ -61,16 +60,16 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 		XMLDecoder decoder=null;
 		try {
 			decoder=new XMLDecoder(new BufferedInputStream(new FileInputStream(storageFileName)));
+			GroupDataRepository = (GroupDataRepo)decoder.readObject();
+			currentUserRepository = (UserDataRepo)decoder.readObject();
 		} catch (FileNotFoundException e) {
 			System.out.println("ERROR: File not found");
 		}
-		GroupDataRepository = (GroupDataRepo)decoder.readObject();
-		currentUserRepository = (UserDataRepo)decoder.readObject();
 	}
 	
 	@Override
 	public UserData updateUserData(long UserId, UserData In) {
-		currentUserRepository.Users.replace(UserId, In);
+		currentUserRepository.getUsers().replace(UserId, In);
 		saveToDisk();
 		return In;
 	}
@@ -80,8 +79,8 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 		UserData logClient = currentUserRepository.findUserByName(Name);
 		if (logClient == null)
 			return null;
-		if (logClient.Password.equals(Password)) {
-			RMIClientList.put(logClient.UserId, client);
+		if (logClient.getPassword().equals(Password)) {
+			RMIClientList.put(logClient.getUserId(), client);
 			saveToDisk();
 			return logClient;
 		}else
@@ -96,7 +95,7 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 	@Override
 	public GroupData sendMsg(long UserId, long GroupId, long ChatId, MsgData message) throws RemoteException {
 		ChatListing chat;
-		if( checkPerms(UserId, GroupId, "make msg") == true ) {
+		if( checkPerms(UserId, GroupId, "make msg") ) {
 			chat = GroupDataRepository.findGroupById(GroupId).findChatById(ChatId);
 			chat.addMsg(message);
 			saveToDisk();
@@ -108,16 +107,16 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 	@Override
 	public GroupData addACheck(long UserId, long GroupId, String CheckName) throws RemoteException {
 		GroupData group;
-		if( checkPerms(UserId, GroupId, "edit checks") == true ) {
+		if( checkPerms(UserId, GroupId, "edit checks") ) {
 			group = GroupDataRepository.findGroupById(GroupId);
 			
-			for(int i = 0; i < group.Check.size(); i++)
-				if(group.Check.get(i).getName().equals(CheckName))
+			for(int i = 0; i < group.getCheck().size(); i++)
+				if(group.getCheck().get(i).getName().equals(CheckName))
 					return null;
 			
 			for(int i = 0; i < AvailibleCheck.size(); i++)
 				if(AvailibleCheck.get(i).getName().equals(CheckName)) {
-					group.Check.add(AvailibleCheck.get(i));
+					group.getCheck().add(AvailibleCheck.get(i));
 					saveToDisk();
 					return group;
 				}
@@ -129,12 +128,12 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 	@Override
 	public GroupData takeACheck(long UserId, long GroupId, String CheckName) throws RemoteException {
 		GroupData group;
-		if( checkPerms(UserId, GroupId, "edit checks") == true ) {
+		if( checkPerms(UserId, GroupId, "edit checks") ) {
 			group = GroupDataRepository.findGroupById(GroupId);
 			
-			for(int i = 0; i < group.Check.size(); i++) {
-				if(group.Check.get(i).getName().equals(CheckName)) {
-					group.Check.remove(i);
+			for(int i = 0; i < group.getCheck().size(); i++) {
+				if(group.getCheck().get(i).getName().equals(CheckName)) {
+					group.getCheck().remove(i);
 					saveToDisk();
 					return group;
 				}
@@ -147,9 +146,9 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 	@Override
 	public GroupData renameGroup(long UserId, long GroupId, String Name) throws RemoteException {
 		GroupData group;
-		if( checkPerms(UserId, GroupId, "rename group") == true ) {
+		if( checkPerms(UserId, GroupId, "rename group") ) {
 			group = GroupDataRepository.findGroupById(GroupId);
-			group.Name = Name;
+			group.setName(Name);
 			saveToDisk();
 			return group;
 		} else
@@ -159,9 +158,9 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 	@Override
 	public GroupData renameChat(long UserId, long GroupId, long ChatId, String Name) throws RemoteException {
 		ChatListing chat;
-		if( checkPerms(UserId, GroupId, "rename chat") == true ) {
+		if( checkPerms(UserId, GroupId, "rename chat") ) {
 			chat = GroupDataRepository.findGroupById(GroupId).findChatById(ChatId);
-			chat.ChatName = Name;
+			chat.setChatName(Name);
 			saveToDisk();
 			return GroupDataRepository.findGroupById(GroupId);
 		} else
@@ -184,7 +183,7 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 	public GroupData makeRole(long UserId, long GroupId, Role newRole) throws RemoteException {
 		GroupData group = GroupDataRepository.findGroupById(GroupId);
 		if(checkPerms(UserId, GroupId, "make role")) {
-			group.Roles.add(newRole);
+			group.getRoles().add(newRole);
 			saveToDisk();
 			return group;
 		}else
@@ -193,7 +192,7 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 
 	@Override
 	public GroupData makeChatListing(long UserId, long GroupId, ChatListing newChat) throws RemoteException {
-		if( checkPerms(UserId, GroupId, "make chat") == true ) {
+		if( checkPerms(UserId, GroupId, "make chat") ) {
 			GroupDataRepository.findGroupById(GroupId).addChat(newChat);
 			saveToDisk();
 			return GroupDataRepository.findGroupById(GroupId);
@@ -203,13 +202,13 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 
 	@Override
 	public GroupData inviteUser(long UserId, long GroupId, long InvitedUserId) throws RemoteException {
-		if( checkPerms(UserId, GroupId, "invite user") == true ) {
+		if( checkPerms(UserId, GroupId, "invite user") ) {
 			UserData newUser = currentUserRepository.findUserById(InvitedUserId);
 			if(newUser == null)
 				return null;
 			
 			GroupDataRepository.findGroupById(GroupId).addUser(newUser);
-			newUser.JoinedGroupIds.add(GroupId);
+			newUser.getJoinedGroupIds().add(GroupId);
 			saveToDisk();
 			return GroupDataRepository.findGroupById(GroupId);
 		} else
@@ -218,7 +217,7 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 
 	@Override
 	public GroupData deleteMsg(long UserId, long GroupId, long ChatId, long MsgId) throws RemoteException {
-		if( checkPerms(UserId, GroupId, "delete msg") == true ) {
+		if( checkPerms(UserId, GroupId, "delete msg") ) {
 			GroupDataRepository.findGroupById(GroupId).findChatById(ChatId).deleteMsg(MsgId);
 			saveToDisk();
 			return GroupDataRepository.findGroupById(GroupId);
@@ -228,7 +227,7 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 
 	@Override
 	public GroupData deleteChatListing(long UserId, long GroupId, long ChatId) throws RemoteException {
-		if( checkPerms(UserId, GroupId, "delete chat") == true ) {
+		if( checkPerms(UserId, GroupId, "delete chat") ) {
 			GroupDataRepository.findGroupById(GroupId).deleteChat(ChatId);
 			saveToDisk();
 			return GroupDataRepository.findGroupById(GroupId);
@@ -238,7 +237,7 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 
 	@Override
 	public boolean deleteGroup(long UserId, long GroupId) throws RemoteException {
-		if( checkPerms(UserId, GroupId, "delete group") == true ) {
+		if( checkPerms(UserId, GroupId, "delete group") ) {
 			GroupDataRepository.deleteGroup(GroupId);
 			saveToDisk();
 			return true;
@@ -248,10 +247,10 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 
 	@Override
 	public GroupData deleteRole(long UserId, long GroupId, String RoleName) throws RemoteException {
-		if( checkPerms(UserId, GroupId, "delete role") == true ) {
-			for(int i = 0; i < GroupDataRepository.findGroupById(GroupId).Roles.size(); i++) {
-				if(GroupDataRepository.findGroupById(GroupId).Roles.get(i).Name.equals(RoleName)) {
-					GroupDataRepository.findGroupById(GroupId).Roles.remove(i);
+		if( checkPerms(UserId, GroupId, "delete role") ) {
+			for(int i = 0; i < GroupDataRepository.findGroupById(GroupId).getRoles().size(); i++) {
+				if(GroupDataRepository.findGroupById(GroupId).getRoles().get(i).Name.equals(RoleName)) {
+					GroupDataRepository.findGroupById(GroupId).getRoles().remove(i);
 					saveToDisk();
 					return GroupDataRepository.findGroupById(GroupId);
 				}
@@ -264,7 +263,7 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 	@Override
 	public boolean deleteUser(long UserId, String Password) throws RemoteException {
 		UserData logClient = currentUserRepository.findUserById(UserId);
-		if (logClient.Password.equals(Password)) {
+		if (logClient.getPassword().equals(Password)) {
 			currentUserRepository.deleteUser(UserId);
 			saveToDisk();
 			return true;
@@ -277,40 +276,54 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 		if(newUser == null)
 			return null;
 		
-		if(currentUserRepository.Names.containsKey(newUser.DisplayName) != false)
+		if(currentUserRepository.getNames().containsKey(newUser.getDisplayName()))
 			return null;
 		
 		currentUserRepository.addUser(newUser);
 		saveToDisk();
-		return currentUserRepository.findUserByName(newUser.DisplayName);
+		return currentUserRepository.findUserByName(newUser.getDisplayName());
 	}
 
 	@Override
-	public GroupData giveTakeRole(long UserId, long GroupId, long TargetUser, String RoleName, boolean giveOrTake){
-		if( checkPerms(UserId, GroupId, "edit role") == true ) {
-			GroupData group = GroupDataRepository.findGroupById(GroupId);
-			if(giveOrTake == false)
-				for(int i = 0; i < group.findGroupUserById(TargetUser).Roles.size(); i++) {
-					if(group.findGroupUserById(TargetUser).Roles.get(i).Name.equals(RoleName)) {
-						group.findGroupUserById(TargetUser).Roles.remove(i);
-						saveToDisk();
-						return GroupDataRepository.findGroupById(GroupId);
-					}
-				}
-			else
-				for(int i = 0; i < group.Roles.size(); i++) {
-					if(group.Roles.get(i).Name.equals(RoleName)) {
-						group.findGroupUserById(TargetUser).Roles.add(group.Roles.get(i));
-						saveToDisk();
-						return GroupDataRepository.findGroupById(GroupId);
-					}
-				}
-				
-				
+	public GroupData giveRole(long UserId, long GroupId, long TargetUser, String RoleName){
+		if( !checkPerms(UserId, GroupId, "edit role") ) {
 			return null;
-		} else
-			return null;
+		}
+		
+		GroupData group = GroupDataRepository.findGroupById(GroupId);
+
+		//Give Role
+		for(int i = 0; i < group.getRoles().size(); i++) {
+			if(group.getRoles().get(i).Name.equals(RoleName)) {
+				group.findGroupUserById(TargetUser).Roles.add(group.getRoles().get(i));
+				saveToDisk();
+				return GroupDataRepository.findGroupById(GroupId);
+			}
+		}
+		
+		return null;
 	}
+	
+	@Override
+	public GroupData takeRole(long UserId, long GroupId, long TargetUser, String RoleName){
+		if( !checkPerms(UserId, GroupId, "edit role") ) {
+			return null;
+		}
+		
+		GroupData group = GroupDataRepository.findGroupById(GroupId);
+		//Take away role
+		for(int i = 0; i < group.findGroupUserById(TargetUser).Roles.size(); i++) {
+			if(group.findGroupUserById(TargetUser).Roles.get(i).Name.equals(RoleName)) {
+				group.findGroupUserById(TargetUser).Roles.remove(i);
+				saveToDisk();
+				return GroupDataRepository.findGroupById(GroupId);
+			}
+		}
+
+		
+		return null;
+	}
+	
 	
 	private boolean checkPerms(long UserId, long GroupId, String PermName){
 		GroupData group = GroupDataRepository.findGroupById(GroupId);
@@ -318,15 +331,12 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 			return false;
 		
 		GroupUserData user = group.findGroupUserById(UserId);
-		if (user != null)
-			if(PermName != null)
-				if(user.checkPerm(PermName))
-					return true;
-				else
-					return false;
-			else
+		if (user != null) {
+			if(PermName != null) {
+				return user.checkPerm(PermName);
+			}else
 				return true;
-		else
+		}else
 			return false;
 	}
 	
@@ -335,9 +345,8 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 			try {
 				RMIClientList.get(key).processUpdate(GroupDataRepository.findGroupById(GroupId));
 			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
-			};
+			}
 		}
 	}
 	
@@ -352,11 +361,7 @@ public class ServerObject extends UnicastRemoteObject implements serverInterface
 		try {
 			ServerObject M = new ServerObject("test.xml");
 			Naming.rebind("concord-s", M);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
+		} catch (RemoteException | MalformedURLException e) {
 			e.printStackTrace();
 		}
 	}

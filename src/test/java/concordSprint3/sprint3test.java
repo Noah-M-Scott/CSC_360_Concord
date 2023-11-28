@@ -1,13 +1,10 @@
 package concordSprint3;
 
-import static org.junit.jupiter.api.Assertions.*;
 
-import java.io.IOException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
@@ -15,13 +12,13 @@ import org.testfx.assertions.api.Assertions;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 
-import ConcordData.CondcordTest;
+
 import ConcordData.UserData;
 import concordSprint2.ClientObject;
 import concordSprint2.ServerObject;
-import concordSprint2.Sprint2Test;
+
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.HorizontalDirection;
+
 import javafx.geometry.VerticalDirection;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -30,7 +27,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import sprint3.entrance;
+
 import sprint3.loginController;
 import sprint3.model;
 import sprint3.sprint3;
@@ -111,7 +108,7 @@ class sprint3test extends sprint3{
 	}
 	
 	@Test
-	public void test(FxRobot robot) throws Exception, InterruptedException{
+	void test(FxRobot robot) throws Exception, InterruptedException{
 
 		
 		//register

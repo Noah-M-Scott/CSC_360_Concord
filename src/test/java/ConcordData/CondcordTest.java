@@ -3,76 +3,73 @@ package ConcordData;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-import org.junit.Before;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class CondcordTest {
+class CondcordTest {
 	ChatListing demoList;
 	GroupDataRepo demoRepo;
 	UserData demoUser;
 	UserDataRepo demoUserRepo;
 	
 	@Test
-	public void test() {
+	void test() {
 		demoList = new ChatListing();
-		demoList.ChatName = "demoListing";
+		demoList.setChatName("demoListing");
 		demoRepo = new GroupDataRepo();
 		demoUser = new UserData();
-		demoUser.DisplayName = "demo";
-		demoUser.UserId = 42;
+		demoUser.setDisplayName("demo");
+		demoUser.setUserId(42);
 		demoUserRepo = new UserDataRepo();
 		
 		MsgData testMsg = new MsgData();
 		testMsg.deleted = false;
 		testMsg.Text = "demo";
 		
-		assertEquals(demoList.addMsg(testMsg), 0);
-		assertEquals(demoList.findMsgById(0).MsgIndex, 0);
-		assertEquals(demoList.findMsgById(0).Text, "demo");
-		assertEquals(demoList.findMsgById(0).deleted, false);
+		assertEquals(0, demoList.addMsg(testMsg));
+		assertEquals(0, demoList.findMsgById(0).MsgIndex);
+		assertEquals("demo", demoList.findMsgById(0).Text);
+		assertEquals(false, demoList.findMsgById(0).deleted);
 		
-		assertEquals(demoList.deleteMsg(0), true);
-		assertEquals(demoList.deleteMsg(1), false);
-		assertEquals(demoList.findMsgById(0).MsgIndex, 0);
-		assertEquals(demoList.findMsgById(0).Text, "deleted");
-		assertEquals(demoList.findMsgById(0).deleted, true);
+		assertEquals(true, demoList.deleteMsg(0));
+		assertEquals(false, demoList.deleteMsg(1));
+		assertEquals(0, demoList.findMsgById(0).MsgIndex);
+		assertEquals("deleted", demoList.findMsgById(0).Text);
+		assertEquals(true, demoList.findMsgById(0).deleted);
 		
 		GroupData demoGroup = new GroupData();
-		demoGroup.GroupId = 0;
+		demoGroup.setGroupId(0);
 		
-		assertEquals(demoGroup.addChat(demoList), 0);
-		assertEquals(demoGroup.findChatById(0).ChatName, "demoListing");
-		assertEquals(demoGroup.deleteChat(0), true);
-		assertEquals(demoGroup.deleteChat(1), false);
+		assertEquals(0, demoGroup.addChat(demoList));
+		assertEquals("demoListing", demoGroup.findChatById(0).getChatName());
+		assertEquals(true, demoGroup.deleteChat(0));
+		assertEquals(false, demoGroup.deleteChat(1));
 		
 		demoUserRepo.addUser(demoUser);
 		demoUserRepo.deleteUser(0);                           
-		assertEquals(demoUserRepo.findUserById(0), null);     
+		assertEquals(null, demoUserRepo.findUserById(0));     
 		
 		
 		GroupUserData demoGroupUser = demoGroup.addUser(demoUser);
-		assertEquals(demoGroupUser.UserId, 0);
-		assertEquals(demoGroup.findGroupUserById(0).Nickname, "demo");
-		demoGroup.Roles.add(new Role());
-		demoGroup.Roles.get(0).Name = "can post";
-		demoGroup.Roles.get(0).Perms.add(new Pair<String, Boolean>("can post", true));
-		demoGroupUser.Roles.add(demoGroup.Roles.get(0));
+		assertEquals(0, demoGroupUser.UserId);
+		assertEquals("demo", demoGroup.findGroupUserById(0).Nickname);
+		demoGroup.getRoles().add(new Role());
+		demoGroup.getRoles().get(0).Name = "can post";
+		demoGroup.getRoles().get(0).Perms.add(new Pair<String, Boolean>("can post", true));
+		demoGroupUser.Roles.add(demoGroup.getRoles().get(0));
 		
-		assertEquals(demoGroupUser.checkPerm("can post"), true);
-		assertEquals(demoGroupUser.checkPerm("can delete"), false);
+		assertEquals(true, demoGroupUser.checkPerm("can post"));
+		assertEquals(false, demoGroupUser.checkPerm("can delete"));
 		
-		demoGroup.Roles.get(0).Perms.get(0).setValue(false);
-		assertEquals(demoGroupUser.checkPerm("can post"), false);
+		demoGroup.getRoles().get(0).Perms.get(0).setValue(false);
+		assertEquals(false, demoGroupUser.checkPerm("can post"));
 		
-		assertEquals(demoGroup.removeUserFromGroup(0), true);
-		assertEquals(demoGroup.removeUserFromGroup(1), false);
+		assertEquals(true, demoGroup.removeUserFromGroup(0));
+		assertEquals(false, demoGroup.removeUserFromGroup(1));
 		
 		demoRepo.addGroup(demoGroup);
-		assertEquals(demoRepo.findGroupById(0).GroupId, 0);
+		assertEquals(0, demoRepo.findGroupById(0).getGroupId());
 		demoRepo.deleteGroup(0);
-		assertEquals(demoRepo.findGroupById(0), null);
+		assertEquals(null, demoRepo.findGroupById(0));
 	}
 
 }

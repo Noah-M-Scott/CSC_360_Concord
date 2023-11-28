@@ -3,10 +3,10 @@ package ConcordData;
 import java.util.ArrayList;
 
 public class ChatListing {
-	public long ChatId;
-	public ArrayList<MsgData> Chat = new ArrayList<MsgData>();
-	public String ChatName = "New Chat";
-	public ArrayList<TextCheck>	Check = new ArrayList<TextCheck>();
+	private long ChatId;
+	private ArrayList<MsgData> Chat = new ArrayList<>();
+	private String ChatName = "New Chat";
+	private ArrayList<TextCheck> Check = new ArrayList<>();
 	
 	public ArrayList<TextCheck> getCheck() {
 		return Check;
@@ -58,8 +58,8 @@ public class ChatListing {
 			in.Text = Check.get(i).CheckString(in.UserId, in.Text);
 		
 		Chat.add(in);
-		Chat.get(Chat.size() - 1).MsgIndex = Chat.size() - 1;
-		return Chat.size() - 1;
+		Chat.get(Chat.size() - 1).MsgIndex = Chat.size() - (long)1;
+		return Chat.size() - (long)1;
 	}
 	
 	public MsgData findMsgById(long index) {

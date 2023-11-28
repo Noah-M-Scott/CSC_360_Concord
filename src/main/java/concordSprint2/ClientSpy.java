@@ -7,6 +7,7 @@ import ConcordData.GroupData;
 
 public class ClientSpy extends ClientObject {
 
+	static final long serialVersionUID = 0;
 	
 	public ClientSpy(Registry in) {
 		super(in);

@@ -1,17 +1,14 @@
 package concordSprint2;
 
 import java.io.Serializable;
-import java.rmi.AccessException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
-import java.util.ArrayList;
 
 import ConcordData.ChatListing;
 import ConcordData.GroupData;
 import ConcordData.MsgData;
 import ConcordData.Role;
-import ConcordData.TextCheck;
 import ConcordData.UserData;
 
 public class ClientObject implements ClientInterface, Serializable {
@@ -23,22 +20,15 @@ public class ClientObject implements ClientInterface, Serializable {
 	public serverInterface ServerProxy;
 	Registry registry;
 	
-	public String[] AvailibleCheckNames = {"AutoExpand", "AutoCensor"};
+	public static final String[] AvailibleCheckNames = {"AutoExpand", "AutoCensor"};
 	
 	public ClientObject(Registry in){
 		registry = in;
 		try {
 			ServerProxy = (serverInterface)registry.lookup("concord-s");
-		} catch (AccessException e) {
-			// TODO Auto-generated catch block
+		} catch (RemoteException | NotBoundException e) {
 			e.printStackTrace();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		}  
 	}
 	
 	@Override
@@ -52,7 +42,6 @@ public class ClientObject implements ClientInterface, Serializable {
 			if(CurrentUser == null)	
 				return "Failed to Login";
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "ok";
@@ -66,7 +55,6 @@ public class ClientObject implements ClientInterface, Serializable {
 			else
 				CurrentGroup = temp;
 		} catch (RemoteException e) {                                    
-			// TODO Auto-generated catch block                           
 			e.printStackTrace();                                         
 		}
 		return "ok";
@@ -80,7 +68,6 @@ public class ClientObject implements ClientInterface, Serializable {
 			else
 				CurrentGroup = temp;
 		} catch (RemoteException e) {                                    
-			// TODO Auto-generated catch block                           
 			e.printStackTrace();                                         
 		}
 		return "ok";
@@ -95,7 +82,6 @@ public class ClientObject implements ClientInterface, Serializable {
 			else
 				CurrentGroup = temp;
 		} catch (RemoteException e) {                                    
-			// TODO Auto-generated catch block                           
 			e.printStackTrace();                                         
 		}
 		return "ok";
@@ -109,7 +95,6 @@ public class ClientObject implements ClientInterface, Serializable {
 			else
 				CurrentGroup = temp;
 		} catch (RemoteException e) {                                    
-			// TODO Auto-generated catch block                           
 			e.printStackTrace();                                         
 		}
 		return "ok";
@@ -123,7 +108,6 @@ public class ClientObject implements ClientInterface, Serializable {
 			else
 				CurrentUser = temp;
 		} catch (RemoteException e) {                                    
-			// TODO Auto-generated catch block                           
 			e.printStackTrace();                                         
 		}
 		return "ok";
@@ -137,7 +121,6 @@ public class ClientObject implements ClientInterface, Serializable {
 			else
 				CurrentGroup = temp;
 		} catch (RemoteException e) {                                    
-			// TODO Auto-generated catch block                           
 			e.printStackTrace();                                         
 		}
 		return "ok";
@@ -151,7 +134,6 @@ public class ClientObject implements ClientInterface, Serializable {
 			else
 				CurrentGroup = temp;
 		} catch (RemoteException e) {                                    
-			// TODO Auto-generated catch block                           
 			e.printStackTrace();                                         
 		}
 		return "ok";
@@ -165,10 +147,9 @@ public class ClientObject implements ClientInterface, Serializable {
 			else
 				CurrentGroup = temp;
 			
-			CurrentUser.JoinedGroupIds.add(newGroup.GroupId);
+			CurrentUser.getJoinedGroupIds().add(newGroup.getGroupId());
 			ServerProxy.updateUserData(UserId, CurrentUser);
 		} catch (RemoteException e) {                                    
-			// TODO Auto-generated catch block                           
 			e.printStackTrace();                                         
 		}
 		return "ok";
@@ -182,7 +163,6 @@ public class ClientObject implements ClientInterface, Serializable {
 			else
 				CurrentGroup = temp;
 		} catch (RemoteException e) {                                    
-			// TODO Auto-generated catch block                           
 			e.printStackTrace();                                         
 		}
 		return "ok";
@@ -196,7 +176,6 @@ public class ClientObject implements ClientInterface, Serializable {
 			else
 				CurrentGroup = temp;
 		} catch (RemoteException e) {                                    
-			// TODO Auto-generated catch block                           
 			e.printStackTrace();                                         
 		}
 		return "ok";
@@ -210,7 +189,6 @@ public class ClientObject implements ClientInterface, Serializable {
 			else
 				CurrentGroup = temp;
 		} catch (RemoteException e) {                                    
-			// TODO Auto-generated catch block                           
 			e.printStackTrace();                                         
 		}
 		return "ok";
@@ -224,7 +202,6 @@ public class ClientObject implements ClientInterface, Serializable {
 			else
 				CurrentGroup = temp;
 		} catch (RemoteException e) {                                    
-			// TODO Auto-generated catch block                           
 			e.printStackTrace();                                         
 		}
 		return "ok";
@@ -238,7 +215,6 @@ public class ClientObject implements ClientInterface, Serializable {
 			else
 				CurrentGroup = temp;
 		} catch (RemoteException e) {                                    
-			// TODO Auto-generated catch block                           
 			e.printStackTrace();                                         
 		}
 		return "ok";
@@ -251,7 +227,6 @@ public class ClientObject implements ClientInterface, Serializable {
 			else
 				return "Failed to delete group";  
 		} catch (RemoteException e) {                                    
-			// TODO Auto-generated catch block                           
 			e.printStackTrace();                                         
 		}
 		return "ok";
@@ -265,7 +240,6 @@ public class ClientObject implements ClientInterface, Serializable {
 			else
 				CurrentGroup = temp;
 		} catch (RemoteException e) {                                    
-			// TODO Auto-generated catch block                           
 			e.printStackTrace();                                         
 		}
 		return "ok";
@@ -278,7 +252,6 @@ public class ClientObject implements ClientInterface, Serializable {
 			else
 				return "Failed to delete user";  
 		} catch (RemoteException e) {                                    
-			// TODO Auto-generated catch block                           
 			e.printStackTrace();                                         
 		}
 		return "ok";
@@ -292,7 +265,6 @@ public class ClientObject implements ClientInterface, Serializable {
 			else
 				CurrentUser = temp;
 		} catch (RemoteException e) {                                    
-			// TODO Auto-generated catch block                           
 			e.printStackTrace();                                         
 		}
 		return "ok";
@@ -300,13 +272,19 @@ public class ClientObject implements ClientInterface, Serializable {
 	
 	public String giveTakeRole(long UserId, long GroupId, long TargetUser, String RoleName, boolean giveOrTake) throws RemoteException {
 		try {             
-			GroupData temp = ServerProxy.giveTakeRole(UserId, GroupId, TargetUser, RoleName, giveOrTake);
+			GroupData temp;
+			if(!giveOrTake)
+				//take a role
+				temp = ServerProxy.takeRole(UserId, GroupId, TargetUser, RoleName);
+			else
+				//give a role
+				temp = ServerProxy.giveRole(UserId, GroupId, TargetUser, RoleName);
+			
 			if(temp == null)
 				return "Failed to give/take role";
 			else
 				CurrentGroup = temp;
 		} catch (RemoteException e) {                                    
-			// TODO Auto-generated catch block                           
 			e.printStackTrace();                                         
 		}
 		return "ok";
@@ -316,7 +294,6 @@ public class ClientObject implements ClientInterface, Serializable {
 		try {             
 			ServerProxy.alertStatus(UserId, Status);
 		} catch (RemoteException e) {                                    
-			// TODO Auto-generated catch block                           
 			e.printStackTrace();                                         
 		}
 		return "ok";

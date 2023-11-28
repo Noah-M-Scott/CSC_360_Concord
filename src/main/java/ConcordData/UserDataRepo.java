@@ -3,8 +3,8 @@ package ConcordData;
 import java.util.HashMap;
 
 public class UserDataRepo {
-	public HashMap<Long, UserData> Users = new HashMap<Long, UserData>();
-	public HashMap<String, Long> Names = new HashMap<String, Long>();
+	private HashMap<Long, UserData> Users = new HashMap<>();
+	private HashMap<String, Long> Names = new HashMap<>();
 	private long idTally = 0;
 	
 	public UserData findUserById(long id){
@@ -16,14 +16,14 @@ public class UserDataRepo {
 	}
 	
 	public void deleteUser(long id){
-		Names.remove(Users.get(id).DisplayName);
+		Names.remove(Users.get(id).getDisplayName());
 		Users.remove(id);
 	}
 	
 	public void addUser(UserData in){
-		in.UserId = idTally++;
-		Users.put(in.UserId, in);
-		Names.put(in.DisplayName, in.UserId);
+		in.setUserId(idTally++);
+		Users.put(in.getUserId(), in);
+		Names.put(in.getDisplayName(), in.getUserId());
 	}
 
 	public HashMap<Long, UserData> getUsers() {

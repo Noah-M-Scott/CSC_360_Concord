@@ -2,33 +2,30 @@ package sprint3;
 
 import java.rmi.RemoteException;
 
-import ConcordData.GroupData;
+
 import ConcordData.UserData;
 import concordSprint2.ClientObject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
-import javafx.scene.input.ContextMenuEvent;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.ScrollEvent;
 
 
 public class loginController {
 
 	@FXML
-	Button Login, Reg;
+	Button Login;
+	@FXML
+	Button Reg;
 	
 	sprint3 callback;
 	
 	model theModel;
 	
 	@FXML
-	TextField nameBox, passwordBox;
+	TextField nameBox;
+	@FXML
+	TextField passwordBox;
 	
 	ClientObject Client;
 	
@@ -55,8 +52,8 @@ public class loginController {
 	@FXML
     void register(ActionEvent event) throws RemoteException {
 		UserData temp = new UserData();
-		temp.DisplayName = nameBox.getText();
-		temp.Password = passwordBox.getText();
+		temp.setDisplayName(nameBox.getText());
+		temp.setPassword(passwordBox.getText());
 		if( Client.addUser(temp).equals("ok") ) {
 			theModel.currentUser = Client.CurrentUser;
 			callback.nextScene();

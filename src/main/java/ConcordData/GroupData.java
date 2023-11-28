@@ -1,14 +1,16 @@
 package ConcordData;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class GroupData {
-	public ArrayList<GroupUserData> Users = new ArrayList<GroupUserData>();
-	public ArrayList<ChatListing> Chats   = new ArrayList<ChatListing>();
-	public ArrayList<Role> Roles          = new ArrayList<Role>();
-	public ArrayList<TextCheck>	Check     = new ArrayList<TextCheck>();
-	public String Name = "NewGroup";
-	public long GroupId;
+public class GroupData implements Serializable {
+	private static final long serialVersionUID = 1212353120908531298L;
+	private ArrayList<GroupUserData> Users = new ArrayList<>();
+	private ArrayList<ChatListing> Chats   = new ArrayList<>();
+	private ArrayList<Role> Roles          = new ArrayList<>();
+	private ArrayList<TextCheck>	Check     = new ArrayList<>();
+	private String Name = "NewGroup";
+	private long GroupId;
 	
 	public ArrayList<TextCheck> getCheck() {
 		return Check;
@@ -68,15 +70,15 @@ public class GroupData {
 
 	private long chatIdCounter;
 	public long addChat(ChatListing in) {
-		in.Check = Check;
-		in.ChatId = chatIdCounter++;
+		in.setCheck(Check);
+		in.setChatId(chatIdCounter++);
 		Chats.add(in);
-		return Chats.size() - 1;
+		return Chats.size() - (long)1;
 	}
 	
 	public boolean deleteChat(long ChatId) {
 		for(int i = 0; i < Chats.size(); i++) {
-			if (Chats.get(i).ChatId == ChatId) {
+			if (Chats.get(i).getChatId() == ChatId) {
 				Chats.remove(Chats.get(i));
 				return true;
 			}
@@ -86,7 +88,7 @@ public class GroupData {
 	
 	public ChatListing findChatById(long ChatId){
 		for(int i = 0; i < Chats.size(); i++) {
-			if (Chats.get(i).ChatId == ChatId)
+			if (Chats.get(i).getChatId() == ChatId)
 				return Chats.get(i);
 		}
 		return null; 
@@ -95,8 +97,8 @@ public class GroupData {
 	public GroupUserData addUser(UserData in){
 		Users.add(new GroupUserData());
 		int index = Users.size() - 1;
-		Users.get(index).UserId = in.UserId;
-		Users.get(index).Nickname = in.DisplayName;
+		Users.get(index).UserId = in.getUserId();
+		Users.get(index).Nickname = in.getDisplayName();
 		return Users.get(index);
 	}
 	
