@@ -6,4 +6,4 @@ Collaboratively designed, solo programming
 
 Built in Eclipse; tests for demo are in src/test/java
 
-If it complains about resources misssing, just remove them from the build path
+If it complains about a resource file misssing, remove it from the build path
